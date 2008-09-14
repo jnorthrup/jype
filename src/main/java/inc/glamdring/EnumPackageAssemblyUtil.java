@@ -2,11 +2,11 @@ package inc.glamdring;
 
 //import inc.glamdring.bitecode.TableRecord;
 
-import static inc.glamdring.EnumPackageAssemblyUtil.Backbone.*;
-import javolution.util.FastMap;
+import static inc.glamdring.EnumPackageAssemblyUtil.Backbone._;
 
 import java.io.*;
 import static java.io.File.createTempFile;
+import static java.lang.Integer.toHexString;
 import static java.lang.Package.getPackage;
 import static java.lang.System.currentTimeMillis;
 import java.lang.reflect.Field;
@@ -16,12 +16,28 @@ import java.util.Map.Entry;
 import java.util.concurrent.*;
 
 
+//private static final String[] ISAREFS = new String[]{"Record", "Value", "Header", "Ref", "Info"};
+enum ISAREFS {
+    Record, Value, Header, Ref, Info;
+
+
+
+    }
+//    static {        for (ISAREFS isaref : ISAREFS.values())
+//            TRAITMARKERS.put("$IsA$"+isaref+"$", "");
+//}
+//
+//    private final static FastMap<String, String> TRAITMARKERS;
+//
+//    static {TRAITMARKERS = new FastMap<String, String>();}
+}
+
 public class EnumPackageAssemblyUtil {
     private static final String EOL = "\n";
-    private static final Map<CharSequence, String> INTRINSICS = new FastMap<CharSequence, String>();
-    private static final String[] ISAREFS = new String[]{"Record", "Value", "Header", "Ref", "Info"};
+    private static final EnumMap<Backbone, String> INTRINSICS = new EnumMap<Backbone, String>(Backbone.class);
     private static final String ISA_MODS = Modifier.toString(Modifier.STATIC | Modifier.FINAL | Modifier.PUBLIC);
     static final Map<Class<?>, Pair<String, Pair<String, String>>> bBufWrap = new LinkedHashMap<Class<?>, Pair<String, Pair<String, String>>>();
+
 
     static {
         bBufWrap.put(char.class, new Pair<String, Pair<String, String>>("Char", new Pair<String, String>("char", "")));
@@ -32,34 +48,32 @@ public class EnumPackageAssemblyUtil {
         bBufWrap.put(float.class, new Pair<String, Pair<String, String>>("Float", new Pair<String, String>("float", "")));
         bBufWrap.put(byte[].class, new Pair<String, Pair<String, String>>("", new Pair<String, String>("byte", " & 0xff")));
         bBufWrap.put(byte.class, new Pair<String, Pair<String, String>>("", new Pair<String, String>("byte", " & 0xff")));
-        INTRINSICS.put("___recordlen___",
+        INTRINSICS.put(Backbone.___recordlen___,
                        "/**\n" +
                        "     * the length of one record\n" +
                        "     */\n\t" +
                        Modifier.toString(Modifier.STATIC | Modifier.PUBLIC) + " int ___recordlen___;");
-        INTRINSICS.put("___size___",
+        INTRINSICS.put(Backbone.___size___,
                        "/**\n" +
                        "     * the size per field, if any\n" +
                        "     */\n\t" +
                        Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int ___size___;");
-        INTRINSICS.put("___seek___",
+        INTRINSICS.put(Backbone.___seek___,
                        "/**\n" +
                        "     * the offset from record-start of the field\n" +
                        "     */\n\t" +
                        Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int ___seek___;");
-        INTRINSICS.put("___subrecord___",
+        INTRINSICS.put(Backbone.___subrecord___,
                        "/**\n" +
                        "     * a delegate class which will perform sub-indexing on behalf of a field once it has marked its initial starting\n" +
                        "     * offset into the stack.\n" +
                        "     */\n" +
                        "\tpublic Class<? extends Enum> ___subrecord___;");
-        INTRINSICS.put("___valueclass___",
+        INTRINSICS.put(Backbone.___valueclass___,
                        "/**\n" +
                        "     * a hint class for bean-wrapper access to data contained.\n" +
                        "     */\n" +
                        "\tpublic Class ___valueclass___;");
-        for (String isaref : ISAREFS)
-            INTRINSICS.put("___is" + isaref + "___", "");
     }
 //
 //    public String getEnumsStructsForPackage() throws Exception {
@@ -74,7 +88,9 @@ public class EnumPackageAssemblyUtil {
         String generated = "";
         String enumName = "";
         for (Entry<Class<? extends Enum>, Iterable<? extends Enum>> entry : entries)
-            generated += createEnumMiddle(tableRecordClass, entry);
+            generated += createEnumMiddle(
+
+                    tableRecordClass, entry);
         return generated;
     }
 
@@ -241,20 +257,22 @@ public class EnumPackageAssemblyUtil {
             String s1 = "";
             for (Field field : fields) {
                 String z = field.toGenericString().replaceAll(enumClazz.getCanonicalName() + ".", "");
-                if (field.getType() != enumClazz && !INTRINSICS.containsKey(field.getName()))
-                    s1 += "\t" + z + ";" + EOL;
+                if (field.getType() != enumClazz && !INTRINSICS.containsKey(field.getName())) {s1 += "\t" + z + ";" + EOL;}
             }
 
             if (s1.length() > 4)
                 result += s1 + EOL;
 
-            for (String isaref : ISAREFS) {
-                INTRINSICS.put("is" + isaref, ISA_MODS + " boolean " + "___is" + isaref + "___=" + enumClazz.getSimpleName().endsWith(isaref) + ';');
+            for (ISAREFS isaref : ISAREFS.values()) {
+                TRAITMARKERS.put("is" + isaref, ISA_MODS + " boolean " + "$IsA$" + isaref + "$=" + enumClazz.getSimpleName().endsWith(isaref) + ';');
             }
 
 
             for (String field : INTRINSICS.values()) {
+                result += "\t" + field + EOL;
+            }
 
+            for (String field : TRAITMARKERS.values()) {
                 result += "\t" + field + EOL;
             }
 
@@ -294,7 +312,7 @@ public class EnumPackageAssemblyUtil {
                         if (attrName.equals("___size___")) {
                             final Integer integer = (Integer) field.get(instance);
                             if (integer != 0)
-                                result = result + "(0x" + Integer.toHexString(integer) + ")";
+                                result = result + "(0x" + toHexString(integer) + ")";
                         } else {
                             if (field.getType() != enumClazz && (field.getModifiers() & (Modifier.STATIC | Modifier.FINAL)) == 0) {
                                 final Object o = field.get(instance);
@@ -380,26 +398,33 @@ public class EnumPackageAssemblyUtil {
                     public String call() throws Exception {
 
                         final Class<?> ___valueclass___ = (Class<?>) map.get(Backbone.___valueclass___).get();
-                        final Integer seek = (Integer) map.get(___seek___).get();
+                        final Integer ___seek___ = (Integer) map.get(Backbone.___seek___).get();
                         final Class<? extends Enum<?>> ___subrecord___ = (Class<? extends Enum<?>>) map.get(Backbone.___subrecord___).get();
                         final Integer ___size___ = (Integer) map.get(Backbone.___size___).get();
                         final String ___doc___ = (String) map.get(Backbone.___doc___).get();
                         final Pair<String, Pair<String, String>> pair = bBufWrap.get(___valueclass___);
 
-                        return " * <tr>" + "<td>" + theSlot.name() + "</td>" + "<td>0x" + Integer.toHexString(___size___)
-                               + "</td>" + "<td>0x" + Integer.toHexString(seek)
-                               + "</td>" + "<td>" + (___doc___ == null ? "" : ___doc___)
-                               + "</td>" + "<td>"
-                               + (___valueclass___ == null ? " (" + pair.getSecond().getFirst()
-                                                   + ") " + theSlot.name()
-                                                   + "=src.get" + pair.getFirst()
-                                                   + "(0x" + Integer.toHexString(seek)
-                                                   + ")" + pair.getSecond().getSecond() : ___valueclass___.getCanonicalName())
-                               + "</td>" + "<td>{@link " + (___subrecord___ == null
-                                                            ? theSlot.getDeclaringClass().getSimpleName()
-                                                              + "Visitor#" + theSlot.name()
-                                                              + "(ByteBuffer, int[], IntBuffer)"
-                                                            : (___subrecord___).getCanonicalName())
+                        final String slotOpen = " * <tr>";
+                        final String attributeOpen = "<td>";
+                        final String attributeClose = "</td>";
+                        return slotOpen + attributeOpen + theSlot.name() + attributeClose + attributeOpen +
+                               (asHex(___size___))
+                               + attributeClose + attributeOpen + (asHex(___seek___))
+                               + attributeClose + attributeOpen + (___doc___ == null ? "" : ___doc___)
+                               + attributeClose + attributeOpen
+                               + (___valueclass___ == null
+                                  ? " (" + pair.getSecond().getFirst()
+                                    + ") " + theSlot.name()
+                                    + "=src.get" + pair.getFirst()
+                                    + "(" +
+                                    (asHex(___seek___))
+                                    + ")" + pair.getSecond().getSecond() : ___valueclass___.getCanonicalName())
+                               + attributeClose + attributeOpen +
+                               "{@link " + (___subrecord___ == null
+                                            ? theSlot.getDeclaringClass().getSimpleName()
+                                              + "Visitor#" + theSlot.name()
+                                              + "(ByteBuffer, int[], IntBuffer)"
+                                            : (___subrecord___).getCanonicalName())
                                + "}</td>" + "</tr>\n";
                     }
                 }.call();
@@ -426,6 +451,8 @@ public class EnumPackageAssemblyUtil {
 
         return generated;
     }
+
+    private static String asHex(Integer ___size___) {return "0x" + toHexString(___size___);}
 
     private static Object[] reflectedState(Enum theSlot, String... strings) {
         final Object[] objects = new Object[strings.length];
@@ -483,9 +510,8 @@ public class EnumPackageAssemblyUtil {
                     layout_clazz = byte[].class;
                     break;
             }
-        } else {
-            layout_clazz = clazz[0];
         }
+        layout_clazz = clazz[0];
         return layout_clazz;
     }
 
@@ -515,7 +541,7 @@ public class EnumPackageAssemblyUtil {
     /**
      * make a best-attempt at creating or opening an index file for later sizing
      *
-     * @param indexName -
+     * @param indexName filename
      * @return a file for index writings/reads
      * @throws FileNotFoundException
      */
@@ -533,7 +559,9 @@ public class EnumPackageAssemblyUtil {
     }
 
     enum Backbone {
-        ___subrecord___,
+        ___size___,
+        ___seek___,
+        ___doc___,
         ___valueclass___ {
             Future _(Backbone theSlot, final EnumMap<Backbone, Future<?>> state) throws ExecutionException, InterruptedException {
                 final Future<?> result;
@@ -547,10 +575,10 @@ public class EnumPackageAssemblyUtil {
                 }
                 return result;
             }},
-        ___size___,
-        ___seek___,
-        ___doc___,;
-        private static ExecutorService REFLECTION_POOL= Executors.newCachedThreadPool();
+        ___subrecord___, ___recordlen___;
+
+
+        private static ExecutorService REFLECTION_POOL = Executors.newCachedThreadPool();
 
         Future _(final Backbone theSlot, final EnumMap<Backbone, Future<?>> state) throws ExecutionException, InterruptedException {
             return REFLECTION_POOL.submit(new Callable<Object>() {
@@ -566,7 +594,7 @@ public class EnumPackageAssemblyUtil {
 
         public static EnumMap<Backbone, Future<?>> _() {
             return new EnumMap<Backbone, Future<?>>(Backbone.class) {
-                Future<? > get(Backbone k) throws ExecutionException, InterruptedException {
+                Future<?> get(Backbone k) throws ExecutionException, InterruptedException {
                     return (Future<?>) (containsKey(k) ? get(k) : _());
                 }
             };

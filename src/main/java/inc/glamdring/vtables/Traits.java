@@ -5,7 +5,7 @@ package inc.glamdring.vtables;
  * Date: Sep 14, 2008
  * Time: 2:31:31 AM
  */
-enum LispTraits {
+enum Traits {
     isAny,isCons( ),
 
 
@@ -53,19 +53,19 @@ enum LispTraits {
 
     final long caps;
 
-    LispTraits(long caps) {
+    Traits(long caps) {
         this.caps = caps;
     }
 
 
-    LispTraits(LispTraits... lineage) {
+    Traits(Traits... lineage) {
         int c = 1 << ordinal();
         caps = init(c, lineage);
     }
 
-    private static long init(int c, LispTraits... lineage) {
-        for (LispTraits lispTraits : lineage) {
-            c |= lispTraits.caps;
+    private static long init(int c, Traits... lineage) {
+        for (Traits traits : lineage) {
+            c |= traits.caps;
         }
         return c;
     }

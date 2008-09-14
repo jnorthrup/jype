@@ -1,6 +1,6 @@
 package inc.glamdring.vtables;
 
- import javolution.lang.Reference;
+import javolution.lang.Reference;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
@@ -8,18 +8,19 @@ import java.nio.IntBuffer;
 /**
  * exploring symbolic unions
  */
-enum triple implements VTable {
+enum Triple implements VTable {
     /**
      *
      */
     $s() {{
-        this.___doc___ = "a nondescript element describing 4 bytes.";
-
+        ___doc___ = "a nondescript element describing 4 bytes.";
     }},
     /**
-     * the root predicate metadata
+     *
      */
-    $p(),
+    $p() {{
+        ___doc___ = "the root predicate metadata";
+    }},
     /**
      *
      */
@@ -27,19 +28,24 @@ enum triple implements VTable {
         ___doc___ = "depending on how you look at it, this either creates an opaque 8-byte long or a union long value";
     }},
     /**
-     * the previous block keeps its init'd size and struct definition proceeds as normal.
+     *
      */
     $o(),
-    $tuple(null),
+    $tuple(null) {{
+        ___doc___ = " <u>this</u> functor works against a tuple that is the length of the 3 prior elements."
+                ;
+    }},
     subject($s),
     /**
-     * a declaration in the form of a s,p,o triple
-     * <ul>
-     * <li>{@link subject } - the {@link subject } (recursively)
-     * <li>$as$ - a {@link predicate }
-     * <li> {@link Integer} - the {@link object}
      */
-    subject$as$Integer(true),
+    subject$as$Integer(true) {{
+        ___doc___ = "   a declaration in the form of a s,p,o triple\n" +
+                    "           the previous block keeps its init'd size and struct definition proceeds as normal." +
+                    "       <ul>\n" +
+                    "       <li>{@link subject } - the {@link subject } (recursively)\n" +
+                    "       <li>$as$ - a {@link predicate }\n" +
+                    "       <li> {@link Integer} - the {@link object}";
+    }},
     subject$as$Uri(true),
     subject$as$Graph(true),
     /**
@@ -62,29 +68,45 @@ enum triple implements VTable {
      * <p/>
      * $key$ has a different semantic connotation to $as$
      */
-    triple$index$subjectPredicateKey(null),
+    triple$index$subjectPredicateKey(null) {{
+        ___doc___ = "      this is an 8 byte union and not 12, using 'null' (aka \"prior\") union constructor option.\n" +
+                    "      <p> why?\n" +
+                    "      <p>the <clinit>'s \"cursor\"  always uses the previous block\n" +
+                    "      to know what to do. thus even though we have a 12 byte\n" +
+                    "      struct the previous function element\n" +
+                    "      only used the first 8 as the object data.\n" +
+                    "      <p/>\n" +
+                    "      using the name of the ename \"triple\" implies this is semantically\n" +
+                    "      a triple reference and not an arbitrary symbol or union.\n" +
+                    "      <p/>\n" +
+                    "      $key$ has a different semantic connotation to $as$";
+    }},
     object(false),
     object$as$Uri(true),
     object$as$Stream(true),
     object$as$IndexPointer(true),
 
     /**
-     * identical to $tuple structurally with its own method(s)
+     *
      */
-    triple(null),
+    triple(null) {{___doc___ = "identical to $tuple structurally with its own method(s)";}},
     /**
-     * change gears to different semantics.
-     * <p/>
-     * this gives us CONS data pointer.
+
+
+
      */
-    triple$as$Cons(null),
+    triple$as$Cons(null) {{
+        ___doc___ = " change gears to different semantics.\n" +
+                    " <p/>                                \n" +
+                    " this gives us CONS data pointer.    ";
+    }},
     /**
      * we just cloned
      * the entire structure
      */
     car(false) {{
         ___doc___ = "we we just cloned \n" +
-                    "the entire structure and now we have triple[2];";
+                    "the entire structure and now we have Triple[2];";
     }},
     car$as$triple(car, $tuple.size),
 
@@ -96,10 +118,19 @@ enum triple implements VTable {
     cdr(null) {
         {
             ___doc___ = " we just cloned the whole CONS+car {};\n" +
-                        "      now triple[0] started in an array of triple[4].\n";
+                        "      now Triple[0] started in an array of Triple[4].\n";
         }
     },
-    cdr$as$triple(cdr, $tuple.size);
+    cdr$as$triple(cdr, $tuple.size) {
+
+        public Reference<? super Traits> _(ByteBuffer heap, byte[] reg, IntBuffer stack) {
+
+        }
+        {
+            ___doc___ = "a sample functor to return a re-positioned byteBuffer.";
+
+        }
+    };
 
     String ___doc___ = "an atomic fopl graph vertice.";
     final int size;
@@ -114,10 +145,10 @@ enum triple implements VTable {
      * <p/>
      * the goal here is to provide a simple way to add functors to a struct that know exactly which range of bytes they are working with and operate on a union byte range of the whole.
      *
-     * @param keepOffset whether to reuse previous block(true), or create a successive block(false), or reblock (NULL or {@link inc.glamdring.vtables.LispTraits#prior }) whole or part of the struct
+     * @param keepOffset whether to reuse previous block(true), or create a successive block(false), or reblock (NULL or {@link Traits#prior }) whole or part of the struct
      * @param mark       optional defaults of reblocking params.  mark supplies first and last blocks to encompass a new block byte-union.  default marks are first and last, respectively.   if omitted, this provides the enum class a means of delivering itself into it's functor as a single current-rerdSize chunk.
      */
-    private triple(Boolean keepOffset, triple... mark) {
+    private Triple(Boolean keepOffset, Triple... mark) {
         if (keepOffset == null) {
             offset = mark.length > 1 ? mark[1].offset + mark[1].size :
                      0;
@@ -125,7 +156,7 @@ enum triple implements VTable {
 
 
         } else {
-            triple prev = values()[ordinal() - 1];
+            Triple prev = values()[ordinal() - 1];
             if (!keepOffset) offset = init(size = prev.size);
             else offset = init(size = prev.size, prev.size + prev.offset);
         }
@@ -133,7 +164,7 @@ enum triple implements VTable {
 
     private int getRecordLen() {return recordLen;}
 
-    private triple(triple prototype, Integer... dim) {
+    private Triple(Triple prototype, Integer... dim) {
 
         offset = init(size = (dim.length > 0 && dim[0] != null && dim[0] >= 0 ? dim[0] : prototype.size),
                       dim.length > 1 && dim[1] != null && dim[1] >= 0 ? dim[1] : prototype.offset);
@@ -146,20 +177,20 @@ enum triple implements VTable {
         return offset;
     }
 
-    triple(int... dim) {
+    Triple(int... dim) {
 //        this.size =size;
         offset = init(size = dim.length > 1 ? dim[1] : 1, dim.length > 1 ? dim[1] : 1);
     }
 
-    public Reference<? super LispTraits> _(ByteBuffer mmapHeapWindow, int[] registers, IntBuffer heapIndex_as_Stack) {
+    public Reference<? super Traits> _(ByteBuffer heap, byte[] register, IntBuffer stack) {
         return null;  //todo: verify for a purpose
     }
 
-    public boolean isA(LispTraits IsA) {
+    public boolean isA(Traits isA) {
         return false;  //todo: verify for a purpose
     }
 
-    public boolean isA(LispTraits... IsA) {
+    public boolean isA(Traits... isA) {
         return false;  //todo: verify for a purpose
     }
 }
