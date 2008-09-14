@@ -1,7 +1,8 @@
 package inc.glamdring;
 
-
 //import inc.glamdring.bitecode.TableRecord;
+
+import static inc.glamdring.EnumPackageAssemblyUtil.Backbone.*;
 import javolution.util.FastMap;
 
 import java.io.*;
@@ -10,8 +11,9 @@ import static java.lang.Package.getPackage;
 import static java.lang.System.currentTimeMillis;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Map.Entry;
 import java.util.*;
+import java.util.Map.Entry;
+import java.util.concurrent.*;
 
 
 public class EnumPackageAssemblyUtil {
@@ -31,33 +33,33 @@ public class EnumPackageAssemblyUtil {
         bBufWrap.put(byte[].class, new Pair<String, Pair<String, String>>("", new Pair<String, String>("byte", " & 0xff")));
         bBufWrap.put(byte.class, new Pair<String, Pair<String, String>>("", new Pair<String, String>("byte", " & 0xff")));
         INTRINSICS.put("___recordlen___",
-                "/**\n" +
-                        "     * the length of one record\n" +
-                        "     */\n\t" +
-                        Modifier.toString(Modifier.STATIC | Modifier.PUBLIC) + " int ___recordlen___;");
+                       "/**\n" +
+                       "     * the length of one record\n" +
+                       "     */\n\t" +
+                       Modifier.toString(Modifier.STATIC | Modifier.PUBLIC) + " int ___recordlen___;");
         INTRINSICS.put("___size___",
-                "/**\n" +
-                        "     * the size per field, if any\n" +
-                        "     */\n\t" +
-                        Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int ___size___;");
+                       "/**\n" +
+                       "     * the size per field, if any\n" +
+                       "     */\n\t" +
+                       Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int ___size___;");
         INTRINSICS.put("___seek___",
-                "/**\n" +
-                        "     * the offset from record-start of the field\n" +
-                        "     */\n\t" +
-                        Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int ___seek___;");
+                       "/**\n" +
+                       "     * the offset from record-start of the field\n" +
+                       "     */\n\t" +
+                       Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int ___seek___;");
         INTRINSICS.put("___subrecord___",
-                "/**\n" +
-                        "     * a delegate class which will perform sub-indexing on behalf of a field once it has marked its initial starting\n" +
-                        "     * offset into the stack.\n" +
-                        "     */\n" +
-                        "\tpublic Class<? extends Enum> ___subrecord___;");
+                       "/**\n" +
+                       "     * a delegate class which will perform sub-indexing on behalf of a field once it has marked its initial starting\n" +
+                       "     * offset into the stack.\n" +
+                       "     */\n" +
+                       "\tpublic Class<? extends Enum> ___subrecord___;");
         INTRINSICS.put("___valueclass___",
-                "/**\n" +
-                        "     * a hint class for bean-wrapper access to data contained.\n" +
-                        "     */\n" +
-                        "\tpublic Class ___valueclass___;");
+                       "/**\n" +
+                       "     * a hint class for bean-wrapper access to data contained.\n" +
+                       "     */\n" +
+                       "\tpublic Class ___valueclass___;");
         for (String isaref : ISAREFS)
-            INTRINSICS.put("___is" + isaref+"___", "");
+            INTRINSICS.put("___is" + isaref + "___", "");
     }
 //
 //    public String getEnumsStructsForPackage() throws Exception {
@@ -99,114 +101,114 @@ public class EnumPackageAssemblyUtil {
         String result = renderBaseEnumFields(enumClazz);
 
         generated += result + "    /** " + enumName + " templated Byte Struct \n" +
-                "     * @param dimensions [0]=___size___,[1]= forced ___seek___\n" +
-                "     */\n";
+                     "     * @param dimensions [0]=___size___,[1]= forced ___seek___\n" +
+                     "     */\n";
 
 
         generated += "\t" + enumName + " ";
 
         generated += "(int... dimensions) {\n" +
-                "        int[] dim = init(dimensions);\n" +
-                "        ___size___ = dim[0];\n" +
-                "        ___seek___ = dim[1];\n" +
-                "\n" +
-                "    }\n" +
-                "\n" +
-                "    int[] init(int... dimensions) {\n" +
-                "        int size = dimensions.length > 0 ? dimensions[0] : 0,\n" +
-                "                seek= dimensions.length > 1 ? dimensions[1] : 0;\n" +
-                "\n" +
-                "        if (___subrecord___ == null) {\n" +
-                "            final String[] indexPrefixes = {\"\", \"s\", \"_\", \"Index\", \"Length\", \"Ref\", \"Header\", \"Info\", \"Table\"};\n" +
-                "            for (String indexPrefix : indexPrefixes) {\n" +
-                "                try {\n" +
-                "                    ___subrecord___ = (Class<? extends Enum>) Class.forName(getClass().getPackage().getName() + '.' + name() + indexPrefix);\n" +
-                "                    try {\n" +
-                "                        size = ___subrecord___.getField(\"___recordlen___\").getInt(null);\n" +
-                "                    } catch (Exception e) {\n" +
-                "                    }\n" +
-                "                    break;\n" +
-                "                } catch (ClassNotFoundException e) {\n" +
-                "                }\n" +
-                "            }\n" +
-                "        }\n" +
-                "\n" +
-                "        for (String vPrefixe1 : new String[]{\"_\", \"\", \"$\", \"Value\",}) {\n" +
-                "            if (___valueclass___ != null) break;\n" +
-                "            String suffix = vPrefixe1;\n" +
-                "            for (String name1 : new String[]{name().toLowerCase(), name(),}) {\n" +
-                "                if (___valueclass___ != null) break;\n" +
-                "                final String trailName = name1;\n" +
-                "                if (trailName.endsWith(suffix)) {\n" +
-                "                    for (String aPackage1 : new String[]{\"\",\n" +
-                "                            getClass().getPackage().getName() + \".\",\n" +
-                "                            \"java.lang.\",\n" +
-                "                            \"java.util.\",\n" +
-                "                    })\n" +
-                "                        if (___valueclass___ == null) break;\n" +
-                "                        else\n" +
-                "                            try {\n" +
-                "                                ___valueclass___ = Class.forName(aPackage1 + name().replace(suffix, \"\"));\n" +
-                "                            } catch (ClassNotFoundException e) {\n" +
-                "                            }\n" +
-                "                }\n" +
-                "            }\n" +
-                "        }\n" +
-                "\n" +
-                "        seek = ___recordlen___;\n" +
-                "        ___recordlen___ += size;\n" +
-                "\n" +
-                "        return new int[]{size, seek};\n" +
-                "    }" +
-                "\n" +
-                "    /**\n" +
-                "     * The struct's top level method for indexing 1 record. Each Enum field will call SubIndex\n" +
-                "     *\n" +
-                "     * @param src      the ByteBuffer of the input file\n" +
-                "     * @param register array holding values pointing to Stack offsets\n" +
-                "     * @param stack    A stack of 32-bit pointers only to src positions\n" +
-                "     */\n" +
-                "    static void index\n" +
-                "            (ByteBuffer src, int[] register, IntBuffer stack) {\n" +
-                "        for (" + enumName + " " + enumName + "_ : values()) {\n" +
-                "            String hdr = " + enumName + "_.name();\n" +
-                "            System.err.println(\"hdr:pos \" + hdr + ':' + stack.position());\n" +
-                "            " + enumName + "_.subIndex(src, register, stack);\n" +
-                "        }\n" +
-                "    }\n" +
-                "\n" +
-                "    /**\n" +
-                "     * Each of the Enums can override thier deault behavior of \"___seek___-past\"\n" +
-                "     *\n" +
-                "     * @param src      the ByteBuffer of the input file\n" +
-                "     * @param register array holding values pointing to Stack offsets\n" +
-                "     * @param stack    A stack of 32-bit pointers only to src positions\n" +
-                "     */\n" +
-                "    private void subIndex(ByteBuffer src, int[] register, IntBuffer stack) {\n" +
-                "        System.err.println(name() + \":subIndex src:stack\" + src.position() + ':' + stack.position());\n" +
-                "        int begin = src.position();\n" +
-                "        int stackPtr = stack.position();\n" +
-                "        stack.put(begin);\n" +
-                "        if (___isRecord___ && ___subrecord___ != null) { \n" +
-                "            /* " +
-                "                try {\n" +
-                "                final " + tableRecordClass.getCanonicalName() + " table = " + tableRecordClass.getCanonicalName() + ".valueOf(___subrecord___.getSimpleName());\n" +
-                "                if (table != null) {\n" +
-                "                    //stow the original location\n" +
-                "                    int mark = stack.position();\n" +
-                "                    stack.position((register[TopLevelRecord.TableRecord.ordinal()] + table.___seek___) / 4);\n" +
-                "                    ___subrecord___.getMethod(\"index\", ByteBuffer.class, int[].class, IntBuffer.class).invoke(null);\n" +
-                "                    //resume the lower stack activities\n" +
-                "                    stack.position(mark);\n" +
-                "                }\n" +
-                "            } catch (Exception e) {\n" +
-                "                throw new Error(e.getMessage());\n" +
-                "            }\n*/" +
-                "        }\n" +
-                "    }";
+                     "        int[] dim = init(dimensions);\n" +
+                     "        ___size___ = dim[0];\n" +
+                     "        ___seek___ = dim[1];\n" +
+                     "\n" +
+                     "    }\n" +
+                     "\n" +
+                     "    int[] init(int... dimensions) {\n" +
+                     "        int size = dimensions.length > 0 ? dimensions[0] : 0,\n" +
+                     "                seek= dimensions.length > 1 ? dimensions[1] : 0;\n" +
+                     "\n" +
+                     "        if (___subrecord___ == null) {\n" +
+                     "            final String[] indexPrefixes = {\"\", \"s\", \"_\", \"Index\", \"Length\", \"Ref\", \"Header\", \"Info\", \"Table\"};\n" +
+                     "            for (String indexPrefix : indexPrefixes) {\n" +
+                     "                try {\n" +
+                     "                    ___subrecord___ = (Class<? extends Enum>) Class.forName(getClass().getPackage().getName() + '.' + name() + indexPrefix);\n" +
+                     "                    try {\n" +
+                     "                        size = ___subrecord___.getField(\"___recordlen___\").getInt(null);\n" +
+                     "                    } catch (Exception e) {\n" +
+                     "                    }\n" +
+                     "                    break;\n" +
+                     "                } catch (ClassNotFoundException e) {\n" +
+                     "                }\n" +
+                     "            }\n" +
+                     "        }\n" +
+                     "\n" +
+                     "        for (String vPrefixe1 : new String[]{\"_\", \"\", \"$\", \"Value\",}) {\n" +
+                     "            if (___valueclass___ != null) break;\n" +
+                     "            String suffix = vPrefixe1;\n" +
+                     "            for (String name1 : new String[]{name().toLowerCase(), name(),}) {\n" +
+                     "                if (___valueclass___ != null) break;\n" +
+                     "                final String trailName = name1;\n" +
+                     "                if (trailName.endsWith(suffix)) {\n" +
+                     "                    for (String aPackage1 : new String[]{\"\",\n" +
+                     "                            getClass().getPackage().getName() + \".\",\n" +
+                     "                            \"java.lang.\",\n" +
+                     "                            \"java.util.\",\n" +
+                     "                    })\n" +
+                     "                        if (___valueclass___ == null) break;\n" +
+                     "                        else\n" +
+                     "                            try {\n" +
+                     "                                ___valueclass___ = Class.forName(aPackage1 + name().replace(suffix, \"\"));\n" +
+                     "                            } catch (ClassNotFoundException e) {\n" +
+                     "                            }\n" +
+                     "                }\n" +
+                     "            }\n" +
+                     "        }\n" +
+                     "\n" +
+                     "        seek = ___recordlen___;\n" +
+                     "        ___recordlen___ += size;\n" +
+                     "\n" +
+                     "        return new int[]{size, seek};\n" +
+                     "    }" +
+                     "\n" +
+                     "    /**\n" +
+                     "     * The struct's top level method for indexing 1 record. Each Enum field will call SubIndex\n" +
+                     "     *\n" +
+                     "     * @param src      the ByteBuffer of the input file\n" +
+                     "     * @param register array holding values pointing to Stack offsets\n" +
+                     "     * @param stack    A stack of 32-bit pointers only to src positions\n" +
+                     "     */\n" +
+                     "    static void index\n" +
+                     "            (ByteBuffer src, int[] register, IntBuffer stack) {\n" +
+                     "        for (" + enumName + " " + enumName + "_ : values()) {\n" +
+                     "            String hdr = " + enumName + "_.name();\n" +
+                     "            System.err.println(\"hdr:pos \" + hdr + ':' + stack.position());\n" +
+                     "            " + enumName + "_.subIndex(src, register, stack);\n" +
+                     "        }\n" +
+                     "    }\n" +
+                     "\n" +
+                     "    /**\n" +
+                     "     * Each of the Enums can override thier deault behavior of \"___seek___-past\"\n" +
+                     "     *\n" +
+                     "     * @param src      the ByteBuffer of the input file\n" +
+                     "     * @param register array holding values pointing to Stack offsets\n" +
+                     "     * @param stack    A stack of 32-bit pointers only to src positions\n" +
+                     "     */\n" +
+                     "    private void subIndex(ByteBuffer src, int[] register, IntBuffer stack) {\n" +
+                     "        System.err.println(name() + \":subIndex src:stack\" + src.position() + ':' + stack.position());\n" +
+                     "        int begin = src.position();\n" +
+                     "        int stackPtr = stack.position();\n" +
+                     "        stack.put(begin);\n" +
+                     "        if (___isRecord___ && ___subrecord___ != null) { \n" +
+                     "            /* " +
+                     "                try {\n" +
+                     "                final " + tableRecordClass.getCanonicalName() + " table = " + tableRecordClass.getCanonicalName() + ".valueOf(___subrecord___.getSimpleName());\n" +
+                     "                if (table != null) {\n" +
+                     "                    //stow the original location\n" +
+                     "                    int mark = stack.position();\n" +
+                     "                    stack.position((register[TopLevelRecord.TableRecord.ordinal()] + table.___seek___) / 4);\n" +
+                     "                    ___subrecord___.getMethod(\"index\", ByteBuffer.class, int[].class, IntBuffer.class).invoke(null);\n" +
+                     "                    //resume the lower stack activities\n" +
+                     "                    stack.position(mark);\n" +
+                     "                }\n" +
+                     "            } catch (Exception e) {\n" +
+                     "                throw new Error(e.getMessage());\n" +
+                     "            }\n*/" +
+                     "        }\n" +
+                     "    }";
 
         final String postScript = generated += "}\n" +
-                "//@@ #end" + enumName + "";
+                                               "//@@ #end" + enumName + "";
 
         try {
 
@@ -286,7 +288,7 @@ public class EnumPackageAssemblyUtil {
                                 tmpString += o1.toString();
                             }
                         } catch (Exception e) {
-                         }
+                        }
 
                         String attrName = field.getName().replaceAll(enumClazz.getCanonicalName(), "");
                         if (attrName.equals("___size___")) {
@@ -298,10 +300,10 @@ public class EnumPackageAssemblyUtil {
                                 final Object o = field.get(instance);
                                 if (o != null && !o.equals(0))
                                     tmpString += "\n\t\t" + attrName + "=" + (field.getType() == Class.class
-                                            ? ((Class) o).getCanonicalName() + ".class" :
-                                            field.getType() == String.class
-                                                    ? '"' + String.valueOf(o).trim() + '"' :
-                                                    String.valueOf(o)) + ";";
+                                                                              ? ((Class) o).getCanonicalName() + ".class" :
+                                                                              field.getType() == String.class
+                                                                              ? '"' + String.valueOf(o).trim() + '"' :
+                                                                              String.valueOf(o)) + ";";
                             }
                         }
                     }
@@ -329,83 +331,118 @@ public class EnumPackageAssemblyUtil {
             recordLen = 0;
         }
         generated += "\n\n/**\n * <p>recordSize: " + recordLen + "\n * <table><tr> " +
-                "<th>name</th>" +
-                "<th>size</th>" +
-                "<th>seek</th>" +
-                "<th>description</th>" +
-                "<th>Value Class</th>" +
-                "<th>Sub-Index</th>" +
-                "</tr>\n";
+                     "<th>name</th>" +
+                     "<th>size</th>" +
+                     "<th>seek</th>" +
+                     "<th>description</th>" +
+                     "<th>Value Class</th>" +
+                     "<th>Sub-Index</th>" +
+                     "</tr>\n";
 
-        String name = "";
-        for (Enum theSlot : enums) {
-            int size = 0, seek = 0;
-            name = theSlot.name();
-            Class subRecord = null;
-            Class valClazz = null;
+        for (final Enum theSlot : enums) {
+/*
+            int ___size___ = 0, ___seek___ = 0;
+            Class ___subrecord___ = null;
+            Class ___valueclass___ = null;
 
             final String[] strings = {"___subrecord___", "___valueclass___", "___size___", "___seek___", "___doc___"};
 
-            final Object[] objects = new Object[strings.length];
-            for (int i = 0; i < strings.length; i++) {
-                String string = strings[i];
-                try {
-                    objects[i] = theSlot.getDeclaringClass().getDeclaredField(string).get(theSlot);
-                } catch (Exception e) {
-                }
-            }
-
+            final Object[] objects = reflectedState(theSlot, strings);
             int j = 0;
-            subRecord = (Class) objects[j++];
-            valClazz = (Class) objects[j++];
+            ___subrecord___ = (Class) objects[j++];
+            ___valueclass___ = (Class) objects[j++];
             try {
-                size = (Integer) objects[j++];
+                ___size___ = (Integer) objects[j++];
             } catch (Exception e) {
-                size = 4;
+                ___size___ = 4;
             }
             try {
-                seek = (Integer) objects[j++];
+                ___seek___ = (Integer) objects[j++];
             } catch (Exception e) {
-                seek = 0;
+                ___seek___ = 0;
             }
 
-            String docString = "";
+            String ___doc___ = "";
             try {
-                docString = (String) objects[j++];
+                ___doc___ = (String) objects[j++];
             } catch (Exception e) {
             }
 
-            if (valClazz == null) {
-                valClazz = guessIntTypes(size);
+            if (___valueclass___ == null) {
+                ___valueclass___ = guessIntTypes(___size___);
             }
 
+*/
 
-            final Pair<String, Pair<String, String>> pair = bBufWrap.get(valClazz);
-            generated += " * <tr>" +
-                    "<td>" + name + "</td>" +
-                    "<td>0x" + Integer.toHexString(size) + "</td>" +
-                    "<td>0x" + Integer.toHexString(seek) + "</td>" +
-                    "<td>" + (docString == null ? "" : docString) + "</td>" +
-                    "<td>" + ((valClazz == null) ? (" (" + pair.getSecond().getFirst() + ") " +
-                    name + "=src.get" + pair.getFirst()
-                    + "(0x" + Integer.toHexString(seek) + ")"
-                    + pair.getSecond().getSecond()) : (valClazz.getCanonicalName())) + "</td>" +
-                    "<td>{@link "
-                    + (subRecord == null ? theSlot.getDeclaringClass().getSimpleName()
-                    + "Visitor#" + name + "(ByteBuffer, int[], IntBuffer)" : subRecord.getCanonicalName()) + "}</td>" +
-                    "</tr>\n";
+            try {
+                final EnumMap<Backbone, Future<?>> map = _();
+                generated += new Callable<String>() {
+                    public String call() throws Exception {
+
+                        final Class<?> ___valueclass___ = (Class<?>) map.get(Backbone.___valueclass___).get();
+                        final Integer seek = (Integer) map.get(___seek___).get();
+                        final Class<? extends Enum<?>> ___subrecord___ = (Class<? extends Enum<?>>) map.get(Backbone.___subrecord___).get();
+                        final Integer ___size___ = (Integer) map.get(Backbone.___size___).get();
+                        final String ___doc___ = (String) map.get(Backbone.___doc___).get();
+                        final Pair<String, Pair<String, String>> pair = bBufWrap.get(___valueclass___);
+
+                        return " * <tr>" + "<td>" + theSlot.name() + "</td>" + "<td>0x" + Integer.toHexString(___size___)
+                               + "</td>" + "<td>0x" + Integer.toHexString(seek)
+                               + "</td>" + "<td>" + (___doc___ == null ? "" : ___doc___)
+                               + "</td>" + "<td>"
+                               + (___valueclass___ == null ? " (" + pair.getSecond().getFirst()
+                                                   + ") " + theSlot.name()
+                                                   + "=src.get" + pair.getFirst()
+                                                   + "(0x" + Integer.toHexString(seek)
+                                                   + ")" + pair.getSecond().getSecond() : ___valueclass___.getCanonicalName())
+                               + "</td>" + "<td>{@link " + (___subrecord___ == null
+                                                            ? theSlot.getDeclaringClass().getSimpleName()
+                                                              + "Visitor#" + theSlot.name()
+                                                              + "(ByteBuffer, int[], IntBuffer)"
+                                                            : (___subrecord___).getCanonicalName())
+                               + "}</td>" + "</tr>\n";
+                    }
+                }.call();
+            } catch (Exception e) {
+                e.printStackTrace();  //TODO: verify for a purpose
+            }
+
         }
+
         generated += " * \n";
 
-        for (Enum theSlot : enums) {
+        for (
+                Enum theSlot
+                : enums)
+
+        {
             generated += " * @see " + docEnum.getCanonicalName() + "#" + theSlot.name() + '\n';
         }
+
         generated += " * </table>\n";
 
         generated += " */\n";
 
 
         return generated;
+    }
+
+    private static Object[] reflectedState(Enum theSlot, String... strings) {
+        final Object[] objects = new Object[strings.length];
+
+
+        for (int i = 0; i < strings.length; i++) {
+            String string = strings[i];
+            shootMe(theSlot, objects, i, string);
+        }
+        return objects;
+    }
+
+    private static void shootMe(Enum theSlot, Object[] objects, int i, String string) {
+        try {
+            objects[i] = theSlot.getDeclaringClass().getDeclaredField(string).get(theSlot);
+        } catch (Exception e) {
+        }
     }
 
 
@@ -468,8 +505,8 @@ public class EnumPackageAssemblyUtil {
 
     public static void main(String... args) throws Exception {
         final String dirName = args.length > 0 ? "target/classes" : args[0];
-        final String indexName = (String)   ((args.length < 1) ?
-                new File(createTempFile("__BC__" + currentTimeMillis(), "rw"), "bitecode").getAbsolutePath() : args[1]);
+        final String indexName = (String) ((args.length < 1) ?
+                                           new File(createTempFile("__BC__" + currentTimeMillis(), "rw"), "bitecode").getAbsolutePath() : args[1]);
 
         File index = getIndexFile(indexName);
 
@@ -494,8 +531,48 @@ public class EnumPackageAssemblyUtil {
             }
         return null;
     }
-}
 
+    enum Backbone {
+        ___subrecord___,
+        ___valueclass___ {
+            Future _(Backbone theSlot, final EnumMap<Backbone, Future<?>> state) throws ExecutionException, InterruptedException {
+                final Future<?> result;
+                result = state.get(this);
+                if (null == result.get()) {
+                    return REFLECTION_POOL.submit(new Callable<Object>() {
+                        public Object call() throws Exception {
+                            return guessIntTypes((Integer) ((Future<?>) state.get(___size___)).get());
+                        }
+                    });
+                }
+                return result;
+            }},
+        ___size___,
+        ___seek___,
+        ___doc___,;
+        private static ExecutorService REFLECTION_POOL= Executors.newCachedThreadPool();
+
+        Future _(final Backbone theSlot, final EnumMap<Backbone, Future<?>> state) throws ExecutionException, InterruptedException {
+            return REFLECTION_POOL.submit(new Callable<Object>() {
+                public Object call() throws Exception {
+                    return state.put(Backbone.this, (Future<?>) REFLECTION_POOL.submit(new Callable<Object>() {
+                        public Object call() throws Exception {
+                            return ((Enum<?>) theSlot).getDeclaringClass().getDeclaredField(name()).get(theSlot);
+                        }
+                    }));
+                }
+            });
+        }
+
+        public static EnumMap<Backbone, Future<?>> _() {
+            return new EnumMap<Backbone, Future<?>>(Backbone.class) {
+                Future<? > get(Backbone k) throws ExecutionException, InterruptedException {
+                    return (Future<?>) (containsKey(k) ? get(k) : _());
+                }
+            };
+        }
+    }
+}
 
 //
 //package inc.glamdring.util;
