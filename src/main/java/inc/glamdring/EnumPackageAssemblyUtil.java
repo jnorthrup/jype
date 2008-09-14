@@ -69,17 +69,17 @@ public class EnumPackageAssemblyUtil {
         Map<Class<? extends Enum>, Iterable<? extends Enum>> map = PackageAssembly.getEnumsStructsForPackage(tableRecordClass.getPackage());
         Set<Entry<Class<? extends Enum>, Iterable<? extends Enum>>> entries = map.entrySet();
 
-        String display = "";
+        String generated = "";
         String enumName = "";
         for (Entry<Class<? extends Enum>, Iterable<? extends Enum>> entry : entries)
-            display += createEnumMiddle(tableRecordClass, entry);
-        return display;
+            generated += createEnumMiddle(tableRecordClass, entry);
+        return generated;
     }
 
 
     static String createEnumMiddle(Class<Enum<?>> tableRecordClass, Entry<Class<? extends Enum>, Iterable<? extends Enum>> entry) throws IOException {
 
-        String display = "";
+        String generated = "";
         String enumName;
         Class<? extends Enum> enumClazz = entry.getKey();
         Iterable<? extends Enum> parentEnum = entry.getValue();
@@ -92,20 +92,20 @@ public class EnumPackageAssemblyUtil {
         OutputStreamWriter ostream = new FileWriter(file);
         System.err.println("*** Dumping " + file.getCanonicalPath() + "\t" + file.toURI().toASCIIString());
 
-        display += "public enum " + enumName + " { " + EOL;
+        generated += "public enum " + enumName + " { " + EOL;
 
 
-        display += renderConstantFields(enumClazz) + ";\n";
+        generated += renderConstantFields(enumClazz) + ";\n";
         String result = renderBaseEnumFields(enumClazz);
 
-        display += result + "    /** " + enumName + " templated Byte Struct \n" +
+        generated += result + "    /** " + enumName + " templated Byte Struct \n" +
                 "     * @param dimensions [0]=___size___,[1]= forced ___seek___\n" +
                 "     */\n";
 
 
-        display += "\t" + enumName + " ";
+        generated += "\t" + enumName + " ";
 
-        display += "(int... dimensions) {\n" +
+        generated += "(int... dimensions) {\n" +
                 "        int[] dim = init(dimensions);\n" +
                 "        ___size___ = dim[0];\n" +
                 "        ___seek___ = dim[1];\n" +
@@ -205,7 +205,7 @@ public class EnumPackageAssemblyUtil {
                 "        }\n" +
                 "    }";
 
-        final String postScript = display += "}\n" +
+        final String postScript = generated += "}\n" +
                 "//@@ #end" + enumName + "";
 
         try {
@@ -217,16 +217,16 @@ public class EnumPackageAssemblyUtil {
 
 
             String eclazz = genHeader(enumClazz);
-            display = t + eclazz + display;
+            generated = t + eclazz + generated;
 //        } catch (NoSuchFieldException e) {
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        ostream.write(display);
+        ostream.write(generated);
         ostream.close();
-        display = "";
-        return display;
+        generated = "";
+        return generated;
     }
 
     private static String renderBaseEnumFields(Class<? extends Enum> enumClazz) {
@@ -319,7 +319,7 @@ public class EnumPackageAssemblyUtil {
 
     public static String genHeader(Class<? extends Enum> docEnum) throws NoSuchFieldException {
 
-        String display = "";
+        String generated = "";
         final Enum[] enums = docEnum.getEnumConstants();
 
         int recordLen = 0;
@@ -328,7 +328,7 @@ public class EnumPackageAssemblyUtil {
         } catch (Exception e) {
             recordLen = 0;
         }
-        display += "\n\n/**\n * <p>recordSize: " + recordLen + "\n * <table><tr> " +
+        generated += "\n\n/**\n * <p>recordSize: " + recordLen + "\n * <table><tr> " +
                 "<th>name</th>" +
                 "<th>size</th>" +
                 "<th>seek</th>" +
@@ -381,7 +381,7 @@ public class EnumPackageAssemblyUtil {
 
 
             final Pair<String, Pair<String, String>> pair = bBufWrap.get(valClazz);
-            display += " * <tr>" +
+            generated += " * <tr>" +
                     "<td>" + name + "</td>" +
                     "<td>0x" + Integer.toHexString(size) + "</td>" +
                     "<td>0x" + Integer.toHexString(seek) + "</td>" +
@@ -395,17 +395,17 @@ public class EnumPackageAssemblyUtil {
                     + "Visitor#" + name + "(ByteBuffer, int[], IntBuffer)" : subRecord.getCanonicalName()) + "}</td>" +
                     "</tr>\n";
         }
-        display += " * \n";
+        generated += " * \n";
 
         for (Enum theSlot : enums) {
-            display += " * @see " + docEnum.getCanonicalName() + "#" + theSlot.name() + '\n';
+            generated += " * @see " + docEnum.getCanonicalName() + "#" + theSlot.name() + '\n';
         }
-        display += " * </table>\n";
+        generated += " * </table>\n";
 
-        display += " */\n";
+        generated += " */\n";
 
 
-        return display;
+        return generated;
     }
 
 
