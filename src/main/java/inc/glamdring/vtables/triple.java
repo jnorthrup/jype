@@ -68,7 +68,7 @@ enum Triple implements VTable {
      * <p/>
      * $key$ has a different semantic connotation to $as$
      */
-    triple$index$subjectPredicateKey(null) {{
+    Triple$index$subjectPredicateKey(null) {{
         ___doc___ = "      this is an 8 byte union and not 12, using 'null' (aka \"prior\") union constructor option.\n" +
                     "      <p> why?\n" +
                     "      <p>the <clinit>'s \"cursor\"  always uses the previous block\n" +
@@ -104,28 +104,25 @@ enum Triple implements VTable {
      * we just cloned
      * the entire structure
      */
-    car(false) {{
+    car(true) {{
         ___doc___ = "we we just cloned \n" +
                     "the entire structure and now we have Triple[2];";
-    }},
-    car$as$triple(car, $tuple.size),
+    }
+    },
+    car$as$Triple(car, $tuple.size),
 
     /**
      * we just cloned the whole CONS+car {};
      * <p/>
      * now triple[0] started in an array of triple[4].
      */
-    cdr(null) {
+    cdr(false) {
         {
             ___doc___ = " we just cloned the whole CONS+car {};\n" +
                         "      now Triple[0] started in an array of Triple[4].\n";
         }
     },
-    cdr$as$triple(cdr, $tuple.size) {
-
-        public Reference<? super Traits> _(ByteBuffer heap, byte[] reg, IntBuffer stack) {
-
-        }
+    cdr$as$Triple(cdr, $tuple.size) {
         {
             ___doc___ = "a sample functor to return a re-positioned byteBuffer.";
 
@@ -182,15 +179,15 @@ enum Triple implements VTable {
         offset = init(size = dim.length > 1 ? dim[1] : 1, dim.length > 1 ? dim[1] : 1);
     }
 
-    public Reference<? super Traits> _(ByteBuffer heap, byte[] register, IntBuffer stack) {
+    public Reference<? extends VTable> $(ByteBuffer heap, byte[] register, IntBuffer stack) {
         return null;  //todo: verify for a purpose
     }
 
-    public boolean isA(Traits isA) {
+    public boolean is(Traits... isA) {
         return false;  //todo: verify for a purpose
     }
 
-    public boolean isA(Traits... isA) {
-        return false;  //todo: verify for a purpose
+    public VTable as(Traits... as) {
+        return null;  //todo: verify for a purpose
     }
 }

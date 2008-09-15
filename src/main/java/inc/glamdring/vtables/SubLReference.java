@@ -18,7 +18,7 @@ class SubLReference<T> {
         VTable vTable = null;
         if (traits.containsKey(trait))
             vTable = traits.get(trait);
-        return vTable != null && vTable.isA(trait);
+        return vTable != null && vTable.is(trait);
 
     }
 

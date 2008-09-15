@@ -2,7 +2,8 @@ package inc.glamdring;
 
 //import inc.glamdring.bitecode.TableRecord;
 
-import static inc.glamdring.EnumPackageAssemblyUtil.Backbone._;
+import static inc.glamdring.vtables.sequence$Slot.$;
+import inc.glamdring.vtables.sequence$Slot;
 
 import java.io.*;
 import static java.io.File.createTempFile;
@@ -15,14 +16,13 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.*;
 
-
 //private static final String[] ISAREFS = new String[]{"Record", "Value", "Header", "Ref", "Info"};
-enum ISAREFS {
-    Record, Value, Header, Ref, Info;
-
-
-
-    }
+//enum ISAREFS {
+//    Record, Value, Header, Ref, Info;
+//
+//
+//
+//    }
 //    static {        for (ISAREFS isaref : ISAREFS.values())
 //            TRAITMARKERS.put("$IsA$"+isaref+"$", "");
 //}
@@ -30,11 +30,11 @@ enum ISAREFS {
 //    private final static FastMap<String, String> TRAITMARKERS;
 //
 //    static {TRAITMARKERS = new FastMap<String, String>();}
-}
+
 
 public class EnumPackageAssemblyUtil {
     private static final String EOL = "\n";
-    private static final EnumMap<Backbone, String> INTRINSICS = new EnumMap<Backbone, String>(Backbone.class);
+    private static final EnumMap<sequence$Slot, String> INTRINSICS = new EnumMap<sequence$Slot, String>(sequence$Slot.class);
     private static final String ISA_MODS = Modifier.toString(Modifier.STATIC | Modifier.FINAL | Modifier.PUBLIC);
     static final Map<Class<?>, Pair<String, Pair<String, String>>> bBufWrap = new LinkedHashMap<Class<?>, Pair<String, Pair<String, String>>>();
 
@@ -48,32 +48,32 @@ public class EnumPackageAssemblyUtil {
         bBufWrap.put(float.class, new Pair<String, Pair<String, String>>("Float", new Pair<String, String>("float", "")));
         bBufWrap.put(byte[].class, new Pair<String, Pair<String, String>>("", new Pair<String, String>("byte", " & 0xff")));
         bBufWrap.put(byte.class, new Pair<String, Pair<String, String>>("", new Pair<String, String>("byte", " & 0xff")));
-        INTRINSICS.put(Backbone.___recordlen___,
+        INTRINSICS.put(sequence$Slot.$as$sequence$length,
                        "/**\n" +
                        "     * the length of one record\n" +
                        "     */\n\t" +
-                       Modifier.toString(Modifier.STATIC | Modifier.PUBLIC) + " int ___recordlen___;");
-        INTRINSICS.put(Backbone.___size___,
+                       Modifier.toString(Modifier.STATIC | Modifier.PUBLIC) + " int $as$sequence$length;");
+        INTRINSICS.put(sequence$Slot.$as$extent$length,
                        "/**\n" +
                        "     * the size per field, if any\n" +
                        "     */\n\t" +
-                       Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int ___size___;");
-        INTRINSICS.put(Backbone.___seek___,
+                       Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int $as$length;");
+        INTRINSICS.put(sequence$Slot.$as$extent$offset,
                        "/**\n" +
                        "     * the offset from record-start of the field\n" +
                        "     */\n\t" +
-                       Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int ___seek___;");
-        INTRINSICS.put(Backbone.___subrecord___,
+                       Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int $as$offset;");
+        INTRINSICS.put(sequence$Slot.$as$symbol,
                        "/**\n" +
                        "     * a delegate class which will perform sub-indexing on behalf of a field once it has marked its initial starting\n" +
                        "     * offset into the stack.\n" +
                        "     */\n" +
-                       "\tpublic Class<? extends Enum> ___subrecord___;");
-        INTRINSICS.put(Backbone.___valueclass___,
+                       "\tpublic Class<? extends Enum> $as$symbol;");
+        INTRINSICS.put(sequence$Slot.$as$type,
                        "/**\n" +
                        "     * a hint class for bean-wrapper access to data contained.\n" +
                        "     */\n" +
-                       "\tpublic Class ___valueclass___;");
+                       "\tpublic Class $as$type;");
     }
 //
 //    public String getEnumsStructsForPackage() throws Exception {
@@ -89,7 +89,6 @@ public class EnumPackageAssemblyUtil {
         String enumName = "";
         for (Entry<Class<? extends Enum>, Iterable<? extends Enum>> entry : entries)
             generated += createEnumMiddle(
-
                     tableRecordClass, entry);
         return generated;
     }
@@ -117,7 +116,7 @@ public class EnumPackageAssemblyUtil {
         String result = renderBaseEnumFields(enumClazz);
 
         generated += result + "    /** " + enumName + " templated Byte Struct \n" +
-                     "     * @param dimensions [0]=___size___,[1]= forced ___seek___\n" +
+                     "     * @param dimensions [0]=$as$length,[1]= forced $as$offset\n" +
                      "     */\n";
 
 
@@ -125,8 +124,8 @@ public class EnumPackageAssemblyUtil {
 
         generated += "(int... dimensions) {\n" +
                      "        int[] dim = init(dimensions);\n" +
-                     "        ___size___ = dim[0];\n" +
-                     "        ___seek___ = dim[1];\n" +
+                     "        $as$length = dim[0];\n" +
+                     "        $as$offset = dim[1];\n" +
                      "\n" +
                      "    }\n" +
                      "\n" +
@@ -134,13 +133,13 @@ public class EnumPackageAssemblyUtil {
                      "        int size = dimensions.length > 0 ? dimensions[0] : 0,\n" +
                      "                seek= dimensions.length > 1 ? dimensions[1] : 0;\n" +
                      "\n" +
-                     "        if (___subrecord___ == null) {\n" +
-                     "            final String[] indexPrefixes = {\"\", \"s\", \"_\", \"Index\", \"Length\", \"Ref\", \"Header\", \"Info\", \"Table\"};\n" +
+                     "        if ($as$symbol == null) {\n" +
+                     "            final String[] indexPrefixes = {\"\", \"s\", \"$\", \"Index\", \"Length\", \"Ref\", \"Header\", \"Info\", \"Table\"};\n" +
                      "            for (String indexPrefix : indexPrefixes) {\n" +
                      "                try {\n" +
-                     "                    ___subrecord___ = (Class<? extends Enum>) Class.forName(getClass().getPackage().getName() + '.' + name() + indexPrefix);\n" +
+                     "                    $as$symbol = (Class<? extends Enum>) Class.forName(getClass().getPackage().getName() + '.' + name() + indexPrefix);\n" +
                      "                    try {\n" +
-                     "                        size = ___subrecord___.getField(\"___recordlen___\").getInt(null);\n" +
+                     "                        size = $as$symbol.getField(\"$as$sequence$length\").getInt(null);\n" +
                      "                    } catch (Exception e) {\n" +
                      "                    }\n" +
                      "                    break;\n" +
@@ -149,11 +148,11 @@ public class EnumPackageAssemblyUtil {
                      "            }\n" +
                      "        }\n" +
                      "\n" +
-                     "        for (String vPrefixe1 : new String[]{\"_\", \"\", \"$\", \"Value\",}) {\n" +
-                     "            if (___valueclass___ != null) break;\n" +
+                     "        for (String vPrefixe1 : new String[]{\"$\", \"\", \"$\", \"Value\",}) {\n" +
+                     "            if ($as$type != null) break;\n" +
                      "            String suffix = vPrefixe1;\n" +
                      "            for (String name1 : new String[]{name().toLowerCase(), name(),}) {\n" +
-                     "                if (___valueclass___ != null) break;\n" +
+                     "                if ($as$type != null) break;\n" +
                      "                final String trailName = name1;\n" +
                      "                if (trailName.endsWith(suffix)) {\n" +
                      "                    for (String aPackage1 : new String[]{\"\",\n" +
@@ -161,18 +160,18 @@ public class EnumPackageAssemblyUtil {
                      "                            \"java.lang.\",\n" +
                      "                            \"java.util.\",\n" +
                      "                    })\n" +
-                     "                        if (___valueclass___ == null) break;\n" +
+                     "                        if ($as$type == null) break;\n" +
                      "                        else\n" +
                      "                            try {\n" +
-                     "                                ___valueclass___ = Class.forName(aPackage1 + name().replace(suffix, \"\"));\n" +
+                     "                                $as$type = Class.forName(aPackage1 + name().replace(suffix, \"\"));\n" +
                      "                            } catch (ClassNotFoundException e) {\n" +
                      "                            }\n" +
                      "                }\n" +
                      "            }\n" +
                      "        }\n" +
                      "\n" +
-                     "        seek = ___recordlen___;\n" +
-                     "        ___recordlen___ += size;\n" +
+                     "        seek = $as$sequence$length;\n" +
+                     "        $as$sequence$length += size;\n" +
                      "\n" +
                      "        return new int[]{size, seek};\n" +
                      "    }" +
@@ -186,15 +185,15 @@ public class EnumPackageAssemblyUtil {
                      "     */\n" +
                      "    static void index\n" +
                      "            (ByteBuffer src, int[] register, IntBuffer stack) {\n" +
-                     "        for (" + enumName + " " + enumName + "_ : values()) {\n" +
-                     "            String hdr = " + enumName + "_.name();\n" +
+                     "        for (" + enumName + " " + enumName + "$ : values()) {\n" +
+                     "            String hdr = " + enumName + "$.name();\n" +
                      "            System.err.println(\"hdr:pos \" + hdr + ':' + stack.position());\n" +
-                     "            " + enumName + "_.subIndex(src, register, stack);\n" +
+                     "            " + enumName + "$.subIndex(src, register, stack);\n" +
                      "        }\n" +
                      "    }\n" +
                      "\n" +
                      "    /**\n" +
-                     "     * Each of the Enums can override thier deault behavior of \"___seek___-past\"\n" +
+                     "     * Each of the Enums can override thier deault behavior of \"$as$offset-past\"\n" +
                      "     *\n" +
                      "     * @param src      the ByteBuffer of the input file\n" +
                      "     * @param register array holding values pointing to Stack offsets\n" +
@@ -205,15 +204,15 @@ public class EnumPackageAssemblyUtil {
                      "        int begin = src.position();\n" +
                      "        int stackPtr = stack.position();\n" +
                      "        stack.put(begin);\n" +
-                     "        if (___isRecord___ && ___subrecord___ != null) { \n" +
+                     "        if (___isRecord___ && $as$symbol != null) { \n" +
                      "            /* " +
                      "                try {\n" +
-                     "                final " + tableRecordClass.getCanonicalName() + " table = " + tableRecordClass.getCanonicalName() + ".valueOf(___subrecord___.getSimpleName());\n" +
+                     "                final " + tableRecordClass.getCanonicalName() + " table = " + tableRecordClass.getCanonicalName() + ".valueOf($as$symbol.getSimpleName());\n" +
                      "                if (table != null) {\n" +
                      "                    //stow the original location\n" +
                      "                    int mark = stack.position();\n" +
-                     "                    stack.position((register[TopLevelRecord.TableRecord.ordinal()] + table.___seek___) / 4);\n" +
-                     "                    ___subrecord___.getMethod(\"index\", ByteBuffer.class, int[].class, IntBuffer.class).invoke(null);\n" +
+                     "                    stack.position((register[TopLevelRecord.TableRecord.ordinal()] + table.$as$offset) / 4);\n" +
+                     "                    $as$symbol.getMethod(\"index\", ByteBuffer.class, int[].class, IntBuffer.class).invoke(null);\n" +
                      "                    //resume the lower stack activities\n" +
                      "                    stack.position(mark);\n" +
                      "                }\n" +
@@ -263,18 +262,18 @@ public class EnumPackageAssemblyUtil {
             if (s1.length() > 4)
                 result += s1 + EOL;
 
-            for (ISAREFS isaref : ISAREFS.values()) {
-                TRAITMARKERS.put("is" + isaref, ISA_MODS + " boolean " + "$IsA$" + isaref + "$=" + enumClazz.getSimpleName().endsWith(isaref) + ';');
-            }
+//            for (ISAREFS isaref : ISAREFS.values()) {
+//                TRAITMARKERS.put("is" + isaref, ISA_MODS + " boolean " + "$IsA$" + isaref + "$=" + enumClazz.getSimpleName().endsWith(isaref) + ';');
+//            }
 
 
             for (String field : INTRINSICS.values()) {
                 result += "\t" + field + EOL;
             }
 
-            for (String field : TRAITMARKERS.values()) {
-                result += "\t" + field + EOL;
-            }
+//            for (String field : TRAITMARKERS.values()) {
+//                result += "\t" + field + EOL;
+//            }
 
         } catch (SecurityException e) {
             e.printStackTrace();  //todo: verify for a purpose
@@ -300,7 +299,7 @@ public class EnumPackageAssemblyUtil {
                     String tmpString = "";
                     for (Field field : fields) {
                         try {
-                            Field doc = enumClazz.getField("___doc___");
+                            Field doc = enumClazz.getField("$as$comment");
                             Object o1 = doc.get(enumClazz);
                             if (null != o1) {
                                 tmpString += o1.toString();
@@ -309,7 +308,7 @@ public class EnumPackageAssemblyUtil {
                         }
 
                         String attrName = field.getName().replaceAll(enumClazz.getCanonicalName(), "");
-                        if (attrName.equals("___size___")) {
+                        if (attrName.equals("$as$length")) {
                             final Integer integer = (Integer) field.get(instance);
                             if (integer != 0)
                                 result = result + "(0x" + toHexString(integer) + ")";
@@ -344,7 +343,7 @@ public class EnumPackageAssemblyUtil {
 
         int recordLen = 0;
         try {
-            recordLen = (Integer) docEnum.getDeclaredField("___recordlen___").get(null);
+            recordLen = (Integer) docEnum.getDeclaredField("$as$sequence$length").get(null);
         } catch (Exception e) {
             recordLen = 0;
         }
@@ -359,66 +358,67 @@ public class EnumPackageAssemblyUtil {
 
         for (final Enum theSlot : enums) {
 /*
-            int ___size___ = 0, ___seek___ = 0;
-            Class ___subrecord___ = null;
-            Class ___valueclass___ = null;
+            int $as$length = 0, $as$offset = 0;
+            Class $as$symbol = null;
+            Class $as$type = null;
 
-            final String[] strings = {"___subrecord___", "___valueclass___", "___size___", "___seek___", "___doc___"};
+            final String[] strings = {"$as$symbol", "$as$type", "$as$length", "$as$offset", "$as$comment"};
 
             final Object[] objects = reflectedState(theSlot, strings);
             int j = 0;
-            ___subrecord___ = (Class) objects[j++];
-            ___valueclass___ = (Class) objects[j++];
+            $as$symbol = (Class) objects[j++];
+            $as$type = (Class) objects[j++];
             try {
-                ___size___ = (Integer) objects[j++];
+                $as$length = (Integer) objects[j++];
             } catch (Exception e) {
-                ___size___ = 4;
+                $as$length = 4;
             }
             try {
-                ___seek___ = (Integer) objects[j++];
+                $as$offset = (Integer) objects[j++];
             } catch (Exception e) {
-                ___seek___ = 0;
-            }
-
-            String ___doc___ = "";
-            try {
-                ___doc___ = (String) objects[j++];
-            } catch (Exception e) {
+                $as$offset = 0;
             }
 
-            if (___valueclass___ == null) {
-                ___valueclass___ = guessIntTypes(___size___);
+            String $as$comment = "";
+            try {
+                $as$comment = (String) objects[j++];
+            } catch (Exception e) {
+            }
+
+            if ($as$type == null) {
+                $as$type = guessIntTypes($as$length);
             }
 
 */
 
             try {
-                final EnumMap<Backbone, Future<?>> map = _();
+                final EnumMap<sequence$Slot, Future<?>> map = $();
                 generated += new Callable<String>() {
                     public String call() throws Exception {
 
-                        final Class<?> ___valueclass___ = (Class<?>) map.get(Backbone.___valueclass___).get();
-                        final Integer ___seek___ = (Integer) map.get(Backbone.___seek___).get();
-                        final Class<? extends Enum<?>> ___subrecord___ = (Class<? extends Enum<?>>) map.get(Backbone.___subrecord___).get();
-                        final Integer ___size___ = (Integer) map.get(Backbone.___size___).get();
-                        final String ___doc___ = (String) map.get(Backbone.___doc___).get();
-                        final Pair<String, Pair<String, String>> pair = bBufWrap.get(___valueclass___);
+                        final Class<?> $as$value = (Class<?>) map.get(sequence$Slot.$as$type).get();
+                        final Integer $as$offset = (Integer) map.get(sequence$Slot.$as$extent$offset).get();
+                        final Class<? extends Enum<?>> ___subrecord___ = (Class<? extends Enum<?>>) map.get(sequence$Slot.$as$symbol).get();
+                        final Integer $as$length = (Integer) map.get(sequence$Slot.$as$extent$length
+                        ).get();
+                        final String $as$comment = (String) map.get(sequence$Slot.$as$comment).get();
+                        final Pair<String, Pair<String, String>> pair = bBufWrap.get($as$value);
 
                         final String slotOpen = " * <tr>";
                         final String attributeOpen = "<td>";
                         final String attributeClose = "</td>";
                         return slotOpen + attributeOpen + theSlot.name() + attributeClose + attributeOpen +
-                               (asHex(___size___))
-                               + attributeClose + attributeOpen + (asHex(___seek___))
-                               + attributeClose + attributeOpen + (___doc___ == null ? "" : ___doc___)
+                               (as$String$as$Hex($as$length))
+                               + attributeClose + attributeOpen + (as$String$as$Hex($as$offset))
+                               + attributeClose + attributeOpen + ($as$comment == null ? "" : $as$comment)
                                + attributeClose + attributeOpen
-                               + (___valueclass___ == null
+                               + ($as$value == null
                                   ? " (" + pair.getSecond().getFirst()
                                     + ") " + theSlot.name()
                                     + "=src.get" + pair.getFirst()
                                     + "(" +
-                                    (asHex(___seek___))
-                                    + ")" + pair.getSecond().getSecond() : ___valueclass___.getCanonicalName())
+                                    (as$String$as$Hex($as$offset))
+                                    + ")" + pair.getSecond().getSecond() : $as$value.getCanonicalName())
                                + attributeClose + attributeOpen +
                                "{@link " + (___subrecord___ == null
                                             ? theSlot.getDeclaringClass().getSimpleName()
@@ -452,8 +452,11 @@ public class EnumPackageAssemblyUtil {
         return generated;
     }
 
-    private static String asHex(Integer ___size___) {return "0x" + toHexString(___size___);}
+    private static String as$String$as$Hex(Integer $s) {
+        return "0x" + toHexString($s);
+    }
 
+    @Deprecated
     private static Object[] reflectedState(Enum theSlot, String... strings) {
         final Object[] objects = new Object[strings.length];
 
@@ -465,6 +468,7 @@ public class EnumPackageAssemblyUtil {
         return objects;
     }
 
+    @Deprecated
     private static void shootMe(Enum theSlot, Object[] objects, int i, String string) {
         try {
             objects[i] = theSlot.getDeclaringClass().getDeclaredField(string).get(theSlot);
@@ -474,13 +478,13 @@ public class EnumPackageAssemblyUtil {
 
 
     private Object[] getSubRecord(Enum enum_) {
-        final String[] suffixes = {"", "s", "_", "Index", "Value", "Ref", "Header", "Info"};
+        final String[] suffixes = {"", "s", "$", "Index", "Value", "Ref", "Header", "Info"};
         for (String indexPrefix : suffixes) {
             try {
                 final String p = enum_.getDeclaringClass().getPackage().getName();
                 final String name = p + '.' + enum_.name() + indexPrefix;
                 final Class<?> aClass = Class.forName(name);
-                final int anInt = aClass.getField("___recordlen___").getInt(null);
+                final int anInt = aClass.getField("$as$sequence$length").getInt(null);
                 if (aClass != null)
                     return new Object[]{aClass, anInt};
 
@@ -558,48 +562,6 @@ public class EnumPackageAssemblyUtil {
         return null;
     }
 
-    enum Backbone {
-        ___size___,
-        ___seek___,
-        ___doc___,
-        ___valueclass___ {
-            Future _(Backbone theSlot, final EnumMap<Backbone, Future<?>> state) throws ExecutionException, InterruptedException {
-                final Future<?> result;
-                result = state.get(this);
-                if (null == result.get()) {
-                    return REFLECTION_POOL.submit(new Callable<Object>() {
-                        public Object call() throws Exception {
-                            return guessIntTypes((Integer) ((Future<?>) state.get(___size___)).get());
-                        }
-                    });
-                }
-                return result;
-            }},
-        ___subrecord___, ___recordlen___;
-
-
-        private static ExecutorService REFLECTION_POOL = Executors.newCachedThreadPool();
-
-        Future _(final Backbone theSlot, final EnumMap<Backbone, Future<?>> state) throws ExecutionException, InterruptedException {
-            return REFLECTION_POOL.submit(new Callable<Object>() {
-                public Object call() throws Exception {
-                    return state.put(Backbone.this, (Future<?>) REFLECTION_POOL.submit(new Callable<Object>() {
-                        public Object call() throws Exception {
-                            return ((Enum<?>) theSlot).getDeclaringClass().getDeclaredField(name()).get(theSlot);
-                        }
-                    }));
-                }
-            });
-        }
-
-        public static EnumMap<Backbone, Future<?>> _() {
-            return new EnumMap<Backbone, Future<?>>(Backbone.class) {
-                Future<?> get(Backbone k) throws ExecutionException, InterruptedException {
-                    return (Future<?>) (containsKey(k) ? get(k) : _());
-                }
-            };
-        }
-    }
 }
 
 //
