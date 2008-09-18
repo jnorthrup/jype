@@ -7,13 +7,14 @@ import java.lang.ref.Reference;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.util.EnumMap;
+import java.util.EnumSet;
 
 /**
  * User: jim
  * Date: Sep 14, 2008
  * Time: 4:46:52 PM
  */
-public enum Sequence$Slot$layout$Enum$layout    {
+public enum Sequence$Slot$layout$Enum$layout {
     $as$extent$length$int(4) {{ $$as$comment$String = "the number of bytes this Slot occupies";}},
     $as$extent$offset$int(4) {{ $$as$comment$String = "the number of bytes from the beginning of the method state byte[] to the slot "; }},
     $as$comment$String(0) {{ $$as$comment$String = "self docs"; }},
@@ -64,7 +65,7 @@ public enum Sequence$Slot$layout$Enum$layout    {
         return null;
     }
 
-    String $$as$comment$String ="the next generation.";
+    String $$as$comment$String = "the next generation.";
     final int $$as$extent$length$int;
     final int $$as$extent$offset$int;
     private static int $$as$Sequence$length$int;
@@ -79,7 +80,7 @@ public enum Sequence$Slot$layout$Enum$layout    {
      * @param keepOffset whether to reuse previous block(true), or create a successive block(false), or reblock (NULL or Primary#prior ) whole or part of the struct
      * @param mark       optional defaults of reblocking params.  mark supplies first and last blocks to encompass a new block byte-union.  default marks are first and last, respectively.   if omitted, this provides the enum class a means of delivering itself into it's functor as a single current-rerdSize chunk.
      */
-      Sequence$Slot$layout$Enum$layout(Boolean keepOffset, Sequence$Slot$layout$Enum$layout... mark) {
+    Sequence$Slot$layout$Enum$layout(Boolean keepOffset, Sequence$Slot$layout$Enum$layout... mark) {
         if (keepOffset == null) {
             $$as$extent$offset$int = mark.length > 1 ? mark[1].$$as$extent$offset$int + mark[1].$$as$extent$length$int :
                                      0;
