@@ -4,8 +4,6 @@ package inc.glamdring;
 
 
 import inc.glamdring.vtables.Sequence$Slot$layout$Enum$layout;
-import inc.glamdring.vtables.Function$infer$Type;
-import static inc.glamdring.vtables.Sequence$Slot$layout$Enum$layout.*;
 
 import java.io.*;
 import static java.io.File.createTempFile;
@@ -15,7 +13,6 @@ import static java.lang.System.currentTimeMillis;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -402,7 +399,7 @@ public class function$layout$VTable$Slot$source {
 //
 //                        final Class<?> $as$value = (Class<?>) map.get($as$Value$Type$Class).get();
 //                        final Integer $as$offset = (Integer) map.get($as$extent$offset$int).get();
-//                        final Class<? extends Enum<?>> ___subrecord___ = (Class<? extends Enum<?>>) map.get( $as$Visitor$VTable$Symbol$String).get();
+//                        final Class<? extends Enum<?>> ___subrecord___ = (Class<? extends Enum<?>>) map.get( $as$Visitor$_$$Symbol$String).get();
 //                        final Integer $as$length = (Integer) map.get($as$extent$length$int
 //                        ).get();
 //                        final String $as$comment = (String) map.get($as$comment$String).get();

@@ -21,7 +21,7 @@ public enum Sequence$Slot$layout$Enum$layout    {
         {
             $$as$comment$String = "The semantically linked visitor delegate which is bound at either of source code or <clinit> by inference";
         }
-        public Enum<? extends VTable> $(final Class<Enum<? extends VTable>> Sequence$slot, final EnumMap<Sequence$Slot$layout$Enum$layout, Enum<? extends VTable>> state) {
+        public Enum<? extends _vtable> $(final Class<Enum<? extends _vtable>> Sequence$slot, final EnumMap<Sequence$Slot$layout$Enum$layout, Enum<? extends _vtable>> state) {
             final FastMap<Object, Object> map = FastMap.newInstance();
             final String name1 = Sequence$slot.getName();
             map.put("name", name1);
@@ -31,7 +31,7 @@ public enum Sequence$Slot$layout$Enum$layout    {
         }
 
         {
-            $$as$sourcecode$String = "        public Enum<? extends VTable> $(final Class<Enum<? extends VTable>> Sequence$slot, final EnumMap<Sequence$Slot$layout$Enum$layout, Enum<? extends VTable>> state) {\n" +
+            $$as$sourcecode$String = "        public Enum<? extends _$> $(final Class<Enum<? extends _$>> Sequence$slot, final EnumMap<Sequence$Slot$layout$Enum$layout, Enum<? extends _$>> state) {\n" +
                                      "            final FastMap<Object, Object> map = FastMap.newInstance();\n" +
                                      "            final String name1 = Sequence$slot.getName();\n" +
                                      "            map.put(\"name\", name1);\n" +
@@ -50,15 +50,15 @@ public enum Sequence$Slot$layout$Enum$layout    {
     $as$Sequence$length$int(4),
     $as$Sequence$Member$sourcecode$String(0);
     public String $$as$sourcecode$String = "";
-//    private final Class<? extends List & VTable> $$as$Visitor$VTable$Symbol=null;
+//    private final Class<? extends List & _$> $$as$Visitor$_$$Symbol=null;
 
-    Class<? extends Enum<? extends VTable>> as$Visitor$VTable$Symbol() {
+    Class<? extends Enum<? extends _vtable>> as$Visitor$VTable$Symbol() {
         return null;
     }
 
-    public Enum<? extends VTable> $(final Class<Enum<? extends VTable>> Slot$Class, final EnumMap<Sequence$Slot$layout$Enum$layout, Enum<? extends VTable>> state) {
+    public Enum<? extends _vtable> $(final Class<Enum<? extends _vtable>> Slot$Class, final EnumMap<Sequence$Slot$layout$Enum$layout, Enum<? extends _vtable>> state) {
         try {
-            return (Enum<? extends VTable>) Slot$Class.getDeclaringClass().getDeclaredField(name()).get(Slot$Class);
+            return (Enum<? extends _vtable>) Slot$Class.getDeclaringClass().getDeclaredField(name()).get(Slot$Class);
         } catch (Exception e) {
         }
         return null;
@@ -103,15 +103,15 @@ public enum Sequence$Slot$layout$Enum$layout    {
     }
 
 
-    public Reference<? extends VTable> $(ByteBuffer heap, byte[] register, IntBuffer stack) {
+    public Reference<? extends _vtable> $(ByteBuffer heap, byte[] register, IntBuffer stack) {
         return null;  //todo: verify for a purpose
     }
 
-    public boolean is(Primary... a) {
+    public boolean is(_ptrait... a) {
         return false;  //todo: verify for a purpose
     }
 
-    public VTable as(Primary... as) {
+    public _vtable as(_ptrait... as) {
         return null;  //todo: verify for a purpose
     }
 
@@ -136,7 +136,7 @@ public enum Sequence$Slot$layout$Enum$layout    {
         $$as$extent$offset$int = init($$as$extent$length$int = dim.length > 1 ? dim[1] : 1, dim.length > 1 ? dim[1] : 1);
     }
 
-    public boolean is(Primary $traits) {
+    public boolean is(_ptrait $traits) {
         return false;  //todo: verify for a purpose
     }
 

@@ -38,7 +38,7 @@ enum RegisterFrame {
      * <p/>
      * the goal here is to provide a simple way to add functors to a struct that know exactly which range of bytes they are working with and operate on a union byte range of the whole.
      *
-     * @param keepOffset whether to reuse previous block(true), or create a successive block(false), or reblock (NULL or {@link Primary#prior }) whole or part of the struct
+     * @param keepOffset whether to reuse previous block(true), or create a successive block(false), or reblock (NULL or {@link _ptrait#prior }) whole or part of the struct
      * @param mark       optional defaults of reblocking params.  mark supplies first and last blocks to encompass a new block byte-union.  default marks are first and last, respectively.   if omitted, this provides the enum class a means of delivering itself into it's functor as a single current-rerdSize chunk.
      */
     private RegisterFrame(Boolean keepOffset, RegisterFrame... mark) {
@@ -75,15 +75,15 @@ enum RegisterFrame {
         offset = init(size = dim.length > 1 ? dim[1] : 1, dim.length > 1 ? dim[1] : 1);
     }
 
-    public Reference<? super Primary> _(ByteBuffer mmapHeapWindow, int[] registers, IntBuffer heapIndex_as_Stack) {
+    public Reference<? super _ptrait> _(ByteBuffer mmapHeapWindow, int[] registers, IntBuffer heapIndex_as_Stack) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public boolean isA(Primary a) {
+    public boolean isA(_ptrait a) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public boolean isA(Primary... a) {
+    public boolean isA(_ptrait... a) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

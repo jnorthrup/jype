@@ -6,7 +6,7 @@ public
 /**
  * exploring symbolic unions
  */
-enum Triple  implements VTable.$binding<Triple, VTable.$narrow<String,Primary.$$String>> {
+enum Triple  implements _vtable.$binding<Triple, _vtable.$narrow<String, _ptrait.$$String>> {
     $s(4) {{$as$comment$String = "a nondescript element describing 4 bytes.";}
     },
     $p(4) {{$as$comment$String = "the root predicate metadata";}},
@@ -99,12 +99,12 @@ enum Triple  implements VTable.$binding<Triple, VTable.$narrow<String,Primary.$$
 
     public int getRecordLen() {return $as$Sequence$length$int;}
 
-    public Enum $(Primary primary) {
+    public Enum $(_ptrait $) {
         return null;  //todo: verify for a purpose
     }
 
 
-    public Triple $($narrow<String, Primary.$$String> string$$String$narrow) {
+    public Triple $($narrow<String, _ptrait.$$String> string$$String$narrow) {
         return null;  //todo: verify for a purpose
     }
 
@@ -112,11 +112,11 @@ enum Triple  implements VTable.$binding<Triple, VTable.$narrow<String,Primary.$$
         return null;  //todo: verify for a purpose
     }
 
-    public <$ extends Primary> boolean is($ $) {
+    public <$ extends _ptrait> boolean is(_ptrait $) {
         return false;  //todo: verify for a purpose
     }
 
-    public EnumSet<Primary> getPrimaryTraits() {
+    public EnumSet<_ptrait> getPrimaryTraits() {
         return null;  //todo: verify for a purpose
     }
 }

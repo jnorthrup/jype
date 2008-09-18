@@ -15,21 +15,24 @@ import java.util.Map;
  * Date: Sep 14, 2008
  * Time: 5:19:58 PM
  */
-public enum Function$infer$Type {
+public enum Function$infer$Type  {
     $as$Function(Method.class, 0),
     $as$byte(byte.class, 1),
     $as$short(short.class, 2),
     $as$int(int.class, 4),
     $as$long(long.class, 8),
-    $as$Sequence$Array$byte(byte[].class, Function$infer$Type.max, 64),
-    $as$Sequence$Buffer$byte(ByteBuffer.class, Function$infer$Type.min, 64, 1024 * 1024 * 8 - 1),
-    $as$Channel$byte(ByteChannel.class, Function$infer$Type.max, 1024 * 1024 * 8),
+    $as$Sequence$Array$byte(byte[].class, true, 64),
+    $as$Sequence$Buffer$byte(ByteBuffer.class, true, 64, 1024 * 1024 * 8 - 1),
+    $as$Channel$byte(ByteChannel.class, true, 1024 * 1024 * 8),
     $as$float$class(float.class, 4),
     $as$double$class(double.class, 10),
-    $as$byte$prefixes$Sequence$byte$char($byte$prefixes$Sequence$byte$char.class, 256);
+    $as$byte$prefixes$Sequence$byte$char(ByteBuffer.class, 256);
 
-
-    final static Boolean exact = null, min = false, max = true;
+    static {
+    final Boolean exact = null;
+        final Boolean min = false;
+        final Boolean max = true;
+    }
     private Boolean $ternary$is$max$min = null;
     private final int[] $as$Sequence$range$int;
 
@@ -98,7 +101,7 @@ public enum Function$infer$Type {
 
         final String name1 = (String) field.get("name");
 
-        for (String s : name1.split("$_")) {
+        for (String s : name1.split("$_$")) {
             for (Package aPackage : testme) {
                 final String cTest = aPackage.getName() + "." + s;
                 try {
