@@ -1,193 +1,122 @@
 package inc.glamdring.vtables;
 
-import javolution.lang.Reference;
+import java.util.EnumSet;
 
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
-
+public
 /**
  * exploring symbolic unions
  */
-enum Triple implements VTable {
-    /**
-     *
-     */
-    $s() {{
-        ___doc___ = "a nondescript element describing 4 bytes.";
-    }},
-    /**
-     *
-     */
-    $p() {{
-        ___doc___ = "the root predicate metadata";
-    }},
-    /**
-     *
-     */
-    $spkey((Boolean) null) {{
-        ___doc___ = "depending on how you look at it, this either creates an opaque 8-byte long or a union long value";
-    }},
-    /**
-     *
-     */
-    $o(),
-    $tuple(null) {{
-        ___doc___ = " <u>this</u> functor works against a tuple that is the length of the 3 prior elements."
-                ;
-    }},
+enum Triple  implements VTable.$binding<Triple, VTable.$narrow<String,Primary.$$String>> {
+    $s(4) {{$as$comment$String = "a nondescript element describing 4 bytes.";}
+    },
+    $p(4) {{$as$comment$String = "the root predicate metadata";}},
+    $spkey((Boolean) null) {{$as$comment$String = "depending on how you look at it, this either creates an opaque 8-byte long or a union long value";}},
+    $o(4),
+    $tuple(null) {{$as$comment$String = " <u>this</u> functor works against a tuple that is the length of the 3 prior elements.";}},
     subject($s),
-    /**
-     */
     subject$as$Integer(true) {{
-        ___doc___ = "   a declaration in the form of a s,p,o triple\n" +
-                    "           the previous block keeps its init'd size and struct definition proceeds as normal." +
-                    "       <ul>\n" +
-                    "       <li>{@link subject } - the {@link subject } (recursively)\n" +
-                    "       <li>$as$ - a {@link predicate }\n" +
-                    "       <li> {@link Integer} - the {@link object}";
+        $as$comment$String = "   a declaration in the form of a s,p,o triple\n" +
+                             "     the previous block keeps its init'd $as$extent$length$int and struct definition proceeds as normal." +
+                             " <ul>\n" +
+                             " <li>{@link subject } - the {@link subject } (recursively)\n" +
+                             " <li>$as$ - a {@link predicate }\n" +
+                             " <li> {@link Integer} - the {@link object}";
     }},
     subject$as$Uri(true),
     subject$as$Graph(true),
-    /**
-     * this should take us to the subject's graph origin decl (the big IsA)
-     */
     subject$as$Triple(true),
     predicate($p),
     predicate$as$Uri(true),
     predicate$as$Function(true),
-    /**
-     * this is an 8 byte union and not 12, using 'null' (aka "prior") union constructor option.
-     * <p> why?
-     * <p>the <clinit>'s "cursor"  always uses the previous block
-     * to know what to do. thus even though we have a 12 byte
-     * struct the previous function element
-     * only used the first 8 as the object data.
-     * <p/>
-     * using the name of the ename "triple" implies this is semantically
-     * a triple reference and not an arbitrary symbol or union.
-     * <p/>
-     * $key$ has a different semantic connotation to $as$
-     */
     Triple$index$subjectPredicateKey(null) {{
-        ___doc___ = "      this is an 8 byte union and not 12, using 'null' (aka \"prior\") union constructor option.\n" +
-                    "      <p> why?\n" +
-                    "      <p>the <clinit>'s \"cursor\"  always uses the previous block\n" +
-                    "      to know what to do. thus even though we have a 12 byte\n" +
-                    "      struct the previous function element\n" +
-                    "      only used the first 8 as the object data.\n" +
-                    "      <p/>\n" +
-                    "      using the name of the ename \"triple\" implies this is semantically\n" +
-                    "      a triple reference and not an arbitrary symbol or union.\n" +
-                    "      <p/>\n" +
-                    "      $key$ has a different semantic connotation to $as$";
+        $as$comment$String = "      this is an 8 byte union and not 12, using 'null' (aka \"prior\") union constructor option.\n" + "<p> why?\n" +
+                             "<p>the <clinit>'s \"forward cursor\"  always uses the previous block\n" +
+                             "to know what to do. thus even though we have a 12 byte\n" +
+                             "struct the previous function element\n" +
+                             "only used the first 8 as the object data.\n" +
+                             "<p/>\n" + "using the name of the ename \"triple\" implies this is semantically\n" +
+                             "a triple reference and not an arbitrary symbol or union.\n" +
+                             "<p/>\n" + "$key$ has a different semantic connotation to $as$";
     }},
     object(false),
     object$as$Uri(true),
     object$as$Stream(true),
     object$as$IndexPointer(true),
-
-    /**
-     *
-     */
-    triple(null) {{___doc___ = "identical to $tuple structurally with its own method(s)";}},
-    /**
-
-
-
-     */
+    triple(null) {{$as$comment$String = "identical to $tuple structurally with its own method(s)";}},
     triple$as$Cons(null) {{
-        ___doc___ = " change gears to different semantics.\n" +
-                    " <p/>                                \n" +
-                    " this gives us CONS data pointer.    ";
+        $as$comment$String = " change gears to different semantics.\n"
+                             + " this gives us CONS data pointer.    ";
     }},
+    car(true) {{$as$comment$String = "we we just cloned \n" + "the entire structure and now we have Triple[2];";}
+    },
+    car$as$Triple(car, $tuple.$as$extent$length$int),
+    cdr(false) {{$as$comment$String = " we just cloned the whole CONS+car {};\n" + "      now Triple[0] started in an array of Triple[4].\n";}},
+    cdr$as$Triple(cdr, $tuple.$as$extent$length$int) {{$as$comment$String = "a sample functor to return a re-positioned byteBuffer.";}};
+    String $as$comment$String = "an atomic graph vertice.";
+    final int $as$extent$length$int;
+    final int $as$extent$offset$int;
+    private static int $as$Sequence$length$int;
+
     /**
-     * we just cloned
-     * the entire structure
+     * the magic happens by this *legal* trickery
      */
-    car(true) {{
-        ___doc___ = "we we just cloned \n" +
-                    "the entire structure and now we have Triple[2];";
+    private int init(int... dim) {
+        int offset = dim.length > 1 ? dim[1] : getRecordLen();
+        $as$Sequence$length$int = Math.max(getRecordLen(), offset + $as$extent$length$int);
+        return offset;
     }
-    },
-    car$as$Triple(car, $tuple.size),
 
     /**
-     * we just cloned the whole CONS+car {};
-     * <p/>
-     * now triple[0] started in an array of triple[4].
+     * copy-on-write
      */
-    cdr(false) {
-        {
-            ___doc___ = " we just cloned the whole CONS+car {};\n" +
-                        "      now Triple[0] started in an array of Triple[4].\n";
-        }
-    },
-    cdr$as$Triple(cdr, $tuple.size) {
-        {
-            ___doc___ = "a sample functor to return a re-positioned byteBuffer.";
+    private Triple(Triple prototype, Integer... dim) {
+        $as$extent$offset$int = init($as$extent$length$int = (dim.length > 0 && dim[0] != null && dim[0] >= 0 ? dim[0] : prototype.$as$extent$length$int),
+                                     dim.length > 1 && dim[1] != null && dim[1] >= 0 ? dim[1] : prototype.$as$extent$offset$int);
+    }
 
-        }
-    };
-
-    String ___doc___ = "an atomic fopl graph vertice.";
-    final int size;
-    final int offset;
-    private static int recordLen;
-
+    Triple(int... dim) {
+        $as$extent$offset$int = init($as$extent$length$int = dim.length > 1 ? dim[1] : 1, dim.length > 1 ? dim[1] : 1);
+    }
 
     /**
      * <h1>union function constructor</h1>
      * these initializers allow struct-wide manipulation of the data using seperate functors indexed by seperate ordinals/symbols and abbreviate the effort required to add groups of functions to a single struct.
-     * <p/>
-     * <p/>
-     * the goal here is to provide a simple way to add functors to a struct that know exactly which range of bytes they are working with and operate on a union byte range of the whole.
+     * the goal here is to provide a simple syntax to add functors to a struct that know exactly which range of bytes they are working with and operate on a union byte extent or the whole.
      *
-     * @param keepOffset whether to reuse previous block(true), or create a successive block(false), or reblock (NULL or {@link Traits#prior }) whole or part of the struct
+     * @param keepOffset whether to reuse previous block(true), or create a successive block(false), or reblock (NULL,[first,last] ) whole or part of the struct
      * @param mark       optional defaults of reblocking params.  mark supplies first and last blocks to encompass a new block byte-union.  default marks are first and last, respectively.   if omitted, this provides the enum class a means of delivering itself into it's functor as a single current-rerdSize chunk.
      */
     private Triple(Boolean keepOffset, Triple... mark) {
         if (keepOffset == null) {
-            offset = mark.length > 1 ? mark[1].offset + mark[1].size :
-                     0;
-            size = mark.length > 0 ? offset - mark[0].offset : getRecordLen();
-
-
-        } else {
-            Triple prev = values()[ordinal() - 1];
-            if (!keepOffset) offset = init(size = prev.size);
-            else offset = init(size = prev.size, prev.size + prev.offset);
+            $as$extent$offset$int = mark.length > 1 ? mark[1].$as$extent$offset$int + mark[1].$as$extent$length$int : 0;
+            $as$extent$length$int = mark.length > 0 ? $as$extent$offset$int - mark[0].$as$extent$offset$int : getRecordLen();
+            return;
         }
+        Triple prev = values()[ordinal() - 1];
+        $as$extent$offset$int =
+                !keepOffset ? init($as$extent$length$int = prev.$as$extent$length$int) : init($as$extent$length$int = prev.$as$extent$length$int, prev.$as$extent$length$int + prev.$as$extent$offset$int);
     }
 
-    private int getRecordLen() {return recordLen;}
+    public int getRecordLen() {return $as$Sequence$length$int;}
 
-    private Triple(Triple prototype, Integer... dim) {
-
-        offset = init(size = (dim.length > 0 && dim[0] != null && dim[0] >= 0 ? dim[0] : prototype.size),
-                      dim.length > 1 && dim[1] != null && dim[1] >= 0 ? dim[1] : prototype.offset);
-    }
-
-    private int init(int... dim) {
-        int offset = dim.length > 1 ? dim[1] : getRecordLen();
-        recordLen = Math.max(
-                getRecordLen(), offset + size);
-        return offset;
-    }
-
-    Triple(int... dim) {
-//        this.size =size;
-        offset = init(size = dim.length > 1 ? dim[1] : 1, dim.length > 1 ? dim[1] : 1);
-    }
-
-    public Reference<? extends VTable> $(ByteBuffer heap, byte[] register, IntBuffer stack) {
+    public Enum $(Primary primary) {
         return null;  //todo: verify for a purpose
     }
 
-    public boolean is(Traits... isA) {
+
+    public Triple $($narrow<String, Primary.$$String> string$$String$narrow) {
+        return null;  //todo: verify for a purpose
+    }
+
+    public Triple $(Triple triple) {
+        return null;  //todo: verify for a purpose
+    }
+
+    public <$ extends Primary> boolean is($ $) {
         return false;  //todo: verify for a purpose
     }
 
-    public VTable as(Traits... as) {
+    public EnumSet<Primary> getPrimaryTraits() {
         return null;  //todo: verify for a purpose
     }
 }

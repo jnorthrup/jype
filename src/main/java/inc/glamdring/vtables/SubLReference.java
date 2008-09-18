@@ -12,9 +12,9 @@ import javolution.lang.Reference;
  * Time: 2:32:51 AM
  */
 class SubLReference<T> {
-    final EnumMap<Traits, VTable> traits = null;
+    final EnumMap<Primary, VTable> traits = null;
 
-    final boolean IsA(Traits trait) {
+    final boolean IsA(Primary trait) {
         VTable vTable = null;
         if (traits.containsKey(trait))
             vTable = traits.get(trait);
@@ -23,6 +23,6 @@ class SubLReference<T> {
     }
 
 
-    public <T extends Traits>
+    public <T extends Primary>
     Reference<?> _(ByteBuffer mmapHeapWindow, int[] registers, IntBuffer heapIndex_as_Stack) {return null;}
 }
