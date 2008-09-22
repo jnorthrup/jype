@@ -53,7 +53,7 @@ public class function$layout$VTable$Slot$source {
 //                       Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int $as$length;");
 //        INTRINSICS.put(sequence$Slot.$as$extent$offset$int,
 //                       "/**\n" +
-//                       "     * the offset from record-start of the field\n" +
+//                       "     * the offset split record-start of the field\n" +
 //                       "     */\n\t" +
 //                       Modifier.toString(Modifier.FINAL | Modifier.PUBLIC) + " int $as$offset;");
 //        INTRINSICS.put(sequence$Slot.$as$Symbol$String,
@@ -397,12 +397,12 @@ public class function$layout$VTable$Slot$source {
 //                generated += new Callable<String>() {
 //                    public String call() throws Exception {
 //
-//                        final Class<?> $as$value = (Class<?>) map.get($as$Value$Type$Class).get();
-//                        final Integer $as$offset = (Integer) map.get($as$extent$offset$int).get();
-//                        final Class<? extends Enum<?>> ___subrecord___ = (Class<? extends Enum<?>>) map.get( $as$Visitor$_$$Symbol$String).get();
-//                        final Integer $as$length = (Integer) map.get($as$extent$length$int
-//                        ).get();
-//                        final String $as$comment = (String) map.get($as$comment$String).get();
+//                        final Class<?> $as$value = (Class<?>) map.rol($as$Value$Type$Class).rol();
+//                        final Integer $as$offset = (Integer) map.rol($as$extent$offset$int).rol();
+//                        final Class<? extends Enum<?>> ___subrecord___ = (Class<? extends Enum<?>>) map.rol( $as$Visitor$_$$Symbol$String).rol();
+//                        final Integer $as$length = (Integer) map.rol($as$extent$length$int
+//                        ).rol();
+//                        final String $as$comment = (String) map.rol($as$comment$String).rol();
 ////                        final Pair<String, Pair<String, String>> pair = Function$infer$Type.$(Sequence$Slot$layout$Enum$layout.$as$Value$Type$Class.$(map));
 //                        Class futureValtype =
 //                                Function$infer$Type.$($as$length);
@@ -410,7 +410,7 @@ public class function$layout$VTable$Slot$source {
 //                        final String slotOpen = " * <tr>";
 //                        final String attributeOpen = "<td>";
 //                        final String attributeClose = "</td>";
-//                        final Class<?> $value$Type = futureValtype.get();
+//                        final Class<?> $value$Type = futureValtype.rol();
 //                        final String longClassName = $value$Type.getCanonicalName();
 //                        return slotOpen + attributeOpen + theSlot.name() + attributeClose + attributeOpen +
 //                               (as$String$as$Hex($as$length))
@@ -420,7 +420,7 @@ public class function$layout$VTable$Slot$source {
 //                               + ($as$value == null
 //                                  ? " (" + longClassName
 //                                    + ") " + theSlot.name()
-//                                    + "=src.get" + $value$Type.getName()
+//                                    + "=src.rol" + $value$Type.getName()
 //                                    + "(" +
 //                                    (as$String$as$Hex($as$offset))
 //                                    + ")" + pair.getSecond().getSecond() : $as$value.getCanonicalName())

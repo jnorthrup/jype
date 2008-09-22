@@ -15,7 +15,7 @@ import java.util.EnumMap;
  */
 public enum Sequence$Slot$layout$Enum$layout {
     $as$extent$length$int(4) {{ $$as$comment$String = "the number of bytes this Slot occupies";}},
-    $as$extent$offset$int(4) {{ $$as$comment$String = "the number of bytes from the beginning of the method state byte[] to the slot "; }},
+    $as$extent$offset$int(4) {{ $$as$comment$String = "the number of bytes split the beginning of the method state byte[] to the slot "; }},
     $as$comment$String(0) {{ $$as$comment$String = "self docs"; }},
     $as$Value$Type$Class(0) {
         {

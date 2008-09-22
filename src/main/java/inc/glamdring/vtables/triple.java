@@ -1,23 +1,20 @@
 package inc.glamdring.vtables;
 
-import javolution.lang.Reference;
-
+import java.net.URI;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.EnumSet;
 
-
-class $$Nil {
-};
 
 /**
  * exploring symbolic unions
  */
 
-public enum Triple implements $narrow<Iterator<String>, Iterator<_ptr_deref>> {
+public enum Triple implements _vtable<Triple>, _arc<URI, $String> {
     s,
     p,
     o;
+
+
     static Class c;
     String $as$comment$String = "an atomic graph vertice.";
     final int $as$extent$length$int;
@@ -25,6 +22,7 @@ public enum Triple implements $narrow<Iterator<String>, Iterator<_ptr_deref>> {
     private static int $as$Sequence$length$int;
     private int recordLen;
     private static ByteBuffer byteBuffer;
+    private ByteBuffer buffer;
 
 
     /**
@@ -71,88 +69,126 @@ public enum Triple implements $narrow<Iterator<String>, Iterator<_ptr_deref>> {
         return recordLen;
     }
 
+//    static public void main(String[] a) {
+//        final String[] strings = {"foo", "sdasadasd", "dsfasdfasdfasdfa"};
+//        final ByteBuffer heap = ByteBuffer.allocate(2222);
+//        int j = 0;
+//
+//        final ByteBuffer iterBuffer = heap.duplicate();
+//
+//        heap.position(Triple.$as$Sequence$length$int);
+//
+//        /**
+//         * pascal strings
+//         */
+//        heap.putInt(s.$as$extent$offset$int, heap.position()).
+//                putInt(strings[j].getBytes().length).put(strings[j++].getBytes()).
+//                putInt(p.$as$extent$offset$int, heap.position()).
+//                putInt(strings[j].getBytes().length).put(strings[j++].getBytes()).
+//                putInt(o.$as$extent$offset$int, heap.position()).
+//                putInt(strings[j].getBytes().length).put(strings[j++].getBytes());
+//
+//
+//        final ArrayList<$Ptr$Deref> ptr_derefs = new ArrayList<$Ptr$Deref>();
+//
+//        $Ptr$Deref ptr_deref = new $Ptr$Deref(heap);
+//        ptr_deref.$(heap.getInt(s.$as$extent$offset$int));
+//        ptr_derefs.add(ptr_deref);
+//        ptr_deref = new $Ptr$Deref(heap);
+//        ptr_deref.$(heap.getInt(p.$as$extent$offset$int));
+//        ptr_derefs.add(ptr_deref);
+//        ptr_deref = new $Ptr$Deref(heap);
+//        ptr_deref.$(heap.getInt(o.$as$extent$offset$int));
+//        ptr_derefs.add(ptr_deref);
+//
+//        heap.flip();
+//
+//        final Iterator<String> iterator = new Iterator<String>() {
+//            ByteBuffer
+//                    byteBuffer = (ByteBuffer) iterBuffer.asReadOnlyBuffer().duplicate().rewind();
+//
+//
+//            public boolean hasNext() {
+//                return byteBuffer.hasRemaining();
+//            }
+//
+//            public String next() {
+//
+//                final int addr = byteBuffer.getInt();
+//                final ByteBuffer buffer1 = (ByteBuffer) iterBuffer.slice().position(addr);
+//
+//                buffer1.slice();
+//                buffer1.limit(buffer1.getInt() + 4);
+//                return buffer1.asCharBuffer().toString();
+//            }
+//
+//            public void remove() {
+//                throw new IllegalArgumentException();
+//            }
+//        };
+//    }
 
-    static public void main(String[] a) {
-        final String[] strings = {"foo", "sdasadasd", "dsfasdfasdfasdfa"};
-        final ByteBuffer heap = ByteBuffer.allocate(2222);
-        int j = 0;
-
-        final ByteBuffer iterBuffer = heap.duplicate();
-
-        heap.position(Triple.$as$Sequence$length$int);
-
-        /**
-         * pascal strings
-         */
-        heap.putInt(s.$as$extent$offset$int, heap.position()).
-                putInt(strings[j].getBytes().length).put(strings[j++].getBytes()).
-                putInt(p.$as$extent$offset$int, heap.position()).
-                putInt(strings[j].getBytes().length).put(strings[j++].getBytes()).
-                putInt(o.$as$extent$offset$int, heap.position()).
-                putInt(strings[j].getBytes().length).put(strings[j++].getBytes());
-
-
-        final ArrayList<_ptr_deref> ptr_derefs = new ArrayList<_ptr_deref>();
-
-        _ptr_deref ptr_deref = new _ptr_deref(heap);
-        ptr_deref.$(heap.getInt(s.$as$extent$offset$int));
-        ptr_derefs.add(ptr_deref);
-        ptr_deref = new _ptr_deref(heap);
-        ptr_deref.$(heap.getInt(p.$as$extent$offset$int));
-        ptr_derefs.add(ptr_deref);
-        ptr_deref = new _ptr_deref(heap);
-        ptr_deref.$(heap.getInt(o.$as$extent$offset$int));
-        ptr_derefs.add(ptr_deref);
-
-        heap.flip();
-
-        final Iterator<String> iterator = new Iterator<String>() {
-            ByteBuffer
-                byteBuffer = (ByteBuffer) iterBuffer.asReadOnlyBuffer().duplicate().rewind();
-
-
-            public boolean hasNext() {
-                return byteBuffer.hasRemaining();
-            }
-
-            public String next() {
-
-                final int addr = byteBuffer.getInt();
-                final ByteBuffer buffer1 = (ByteBuffer) iterBuffer.slice().position(addr);
-
-                buffer1.slice();
-                buffer1.limit(buffer1.getInt() + 4);
-                return buffer1.asCharBuffer().toString();
-            }
-
-            public void remove() {throw new IllegalArgumentException();
-            }
-        };
-
+    public <$ extends _ptrait> boolean is(_ptrait $) {
+        return false;  //todo: verify for a purpose
     }
 
-    public Iterator<String> $() {
+    public EnumSet<_ptrait> getPrimaryTraits() {
         return null;  //todo: verify for a purpose
     }
 
-    public Iterator<String> $(Iterator<_ptr_deref> ptr_derefIterator) {
-        return null;  //todo: verify for a purpose
+    public int getOffset() {
+        return $as$extent$offset$int;
     }
 
-    public <$$> Iterator<String> ctor(Iterator<?> first, $$ last) {
-        return null;  //todo: verify for a purpose
+    public int getSize() {
+        return $as$extent$length$int;
     }
 
-    public <$$$ extends Reference<?>> Iterator<String> revive($$$ $$$) {
-        return null;  //todo: verify for a purpose
+    public URI rol(_arc<URI, $String>... p) {
+        for (_arc<URI, $String> uri$String_arc : p) {
+            return uri$String_arc.rol(p);
+        }
+
+        return null;
     }
 
-    public Iterator<String> $(Iterable $$$) {
-        return null;  //todo: verify for a purpose
+    public $String ror(_arc<URI, $String>... ses) {
+        for (_arc<URI, $String> se : ses) {
+            return se.ror(ses);
+        }
+        return null;
     }
 
-    public Class getValueClass() {
-        return null;  //todo: verify for a purpose
+    public _arc<URI, $String> join(final URI uri, $String... r) {
+        for (final $String $String : r) {
+
+            return new _arc<URI, $String>() {
+                public URI rol(_arc<URI, $String>... p) {
+
+                    return uri;
+                }
+
+                public $String ror(_arc<URI, $String>... ses) {
+                    return $String;  //todo: verify for a purpose
+                }
+
+
+                public _arc<URI, $String> join(URI uri, $String... r) {
+                    return this;
+                }
+
+                public URI reify(_ptr... ptr) {
+                    return URI.create($String.rol());  //todo: verify for a purpose
+                }
+            };
+        }
+        return null;
+    }
+
+    public URI reify(_ptr... ptr) {
+        final String s1 = new $String().reify(ptr);
+        return URI.create(s1);
+        
     }
 }
 

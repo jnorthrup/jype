@@ -13,6 +13,4 @@ public interface _vtable<$ extends Enum<$> & _vtable<? super $>> {
     EnumSet<_ptrait> getPrimaryTraits();
     int getOffset();
     int getSize();
-
-
 }
