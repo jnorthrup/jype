@@ -188,7 +188,7 @@ public enum Triple implements _vtable<Triple>, _arc<URI, $String> {
     public URI reify(_ptr... ptr) {
         final String s1 = new $String().reify(ptr);
         return URI.create(s1);
-        
-    }
-}
 
+    }
+
+}
