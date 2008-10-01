@@ -34,7 +34,7 @@ public class PackageAssembly {
 
             ClassLoader cld = Thread.currentThread().getContextClassLoader();
             if (cld == null) {
-                throw new ClassNotFoundException("Can't rol class loader.");
+                throw new ClassNotFoundException("Can't l$ class loader.");
             }
             // Ask for all resources for the path
             final String resName = pckgname.replace('.', '/');
@@ -63,7 +63,7 @@ public class PackageAssembly {
                     "a valid package (Unsupported encoding)");
         } catch (IOException ioex) {
             throw new ClassNotFoundException("IOException was thrown when trying " +
-                    "to rol all resources for " + pckgname);
+                    "to l$ all resources for " + pckgname);
         }
 
         // For every directory identified capture all the .class files

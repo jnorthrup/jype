@@ -2,16 +2,9 @@ package inc.glamdring.vtables;
 
 
 import java.util.EnumSet;
-import java.util.List;
-import java.util.Vector;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
 
-class Operator {
-}
-
-class Any {
-}
 
 /**
  * User: jim
@@ -62,7 +55,6 @@ public enum _ptrait implements _vtable<_ptrait> {
     $Read,
     $Socket,
     $Special,
-    $Streams,
     $Synonym,
     $System,
     $Ternary,
@@ -76,16 +68,43 @@ public enum _ptrait implements _vtable<_ptrait> {
     $User,
     $Utility,
     $Zero,
-    $Object {{deref = new _deref<Object>();}},
-    $Sequence($Object) {{deref = new _deref<Sequence>();}},
-    $List($Sequence) {{deref = new _deref<List>();}},
-    $Cons($List) {{deref = new _deref<Cons>();}},
-    $Operator($Object) {{deref = new _deref<Operator>();}},
-    $Function($Operator) {{deref = new _deref<Function>();}},
-    $Stream {{deref = new _deref<Stream>();}},
+    $Object {{
+        deref = new _deref<Object>();
+    }},
+    $Sequence($Object) {{
+        deref = new _deref<$$Sequence>();
+    }class $$Sequence {
+    }},
+    $List($Sequence) {{
+        deref = new _deref<$$List>();
+    }class $$List {
+    }},
+    $Cons($List) {{
+        deref = new _deref<$$Cons>();
+    }private class $$Cons {
+    }},
+    $Operator($Object) {{
+        deref = new _deref<$$Operator>();
+    }class $$Operator {
+    }},
+    $Function($Operator) {{
+        deref = new _deref<$$Function>();
+    }class $$Function {
+    }},
+    $Stream {{
+        deref = new _deref<$$Stream>();
+    }class $$Stream {
+    }},
+
+    $Number {{
+        deref = new _deref<Number>();
+    }},
     $Input$Stream,
     $Alien,
-    $Any {{deref = new _deref<Any>();}},
+    $Any {{
+        deref = new _deref<$$Any>();
+    }class $$Any {
+    }},
     $Array$List,
     $Array$Sequence,
     $Benchmark,
@@ -93,7 +112,9 @@ public enum _ptrait implements _vtable<_ptrait> {
     $Bignum,
     $Binary$Function,
     $Binary$Stream,
-    $Boolean {{deref = new _deref<Boolean>();}},
+    $Boolean {{
+        deref = new _deref<Boolean>();
+    }},
     $Broadcast$Stream($Stream) {{
         class $$Broadcast$Stream {
         }
@@ -102,8 +123,12 @@ public enum _ptrait implements _vtable<_ptrait> {
     $Byte,
     $Catchable$Throw,
     $Cdestructuring$Bind,
-    $Character($Object) {{deref = new _deref<Character>();}},
-    $Char($Character) {{deref = new _deref<Character>();}},
+    $Character($Object) {{
+        deref = new _deref<Character>();
+    }},
+    $Char($Character) {{
+        deref = new _deref<Character>();
+    }},
     $Character$Name,
     $Compatibility,
     $Compiled$Function($Function, $Operator) {{
@@ -121,24 +146,34 @@ public enum _ptrait implements _vtable<_ptrait> {
         }
         deref = new _deref<$$Cons$Pair>();
     }},
-    $Double {{deref = new _deref<Double>();}},
+    $Double {{
+        deref = new _deref<Double>();
+    }},
     $Double$Float {{
         class $$Double$Float {
         }
         deref = new _deref<$$Double$Float>();
     }},
     $Dynamic,
-    $Environment() {{deref = new _deref<Environment>();}},
+    $Environment() {{
+        deref = new _deref<$$Environment>();
+    }class $$Environment {
+    }},
     $Equality,
     $Eval,
     $Exception,
     $Filesys,
     $Fixnum,
-    $Float {{deref = new _deref<Float>();}},
+    $Float {{
+        deref = new _deref<Float>();
+    }},
     $Foreign,
     $Format,
     $Function$Arg$List$Description,
-    $Guid {{deref = new _deref<Guid>();}},
+    $Guid {{
+        deref = new _deref<$$Guid>();
+    }class $$Guid {
+    }},
     $Hashtable$High,
     $Hashtable$Iterator {{
         class $$Hashtable$Iterator {
@@ -166,22 +201,38 @@ public enum _ptrait implements _vtable<_ptrait> {
         }
         deref = new _deref<$$Input$Text$Stream>();
     }},
-    $Int() {{deref = new _deref<Integer>();}},
-    $Integer {{deref = new _deref<Integer>();}},
+    $Integer($Number) {{
+        deref = new _deref<Integer>();
+    }},
+    $Int($Integer) {{
+        deref = new _deref<Integer>();
+    }},
     $Integer$Bignum,
     $Interpreted$Function($Function),
     $Invalid$Expression$Exception,
-    $Keyhash {{deref = new _deref<Keyhash>();}},
+    $Keyhash {{
+        deref = new _deref<$$Keyhash>();
+    }class $$Keyhash {
+    }},
     $Keyhash$Iterator,
-    $Lock {{deref = new _deref<Lock>();}},
-    $Long {{deref = new _deref<Long>();}},
+    $Lock {{
+        deref = new _deref<Lock>();
+    }},
+    $Long($Integer) {{
+        deref = new _deref<Long>();
+    }},
     $Long$Bignum,
-    $Macro {{deref = new _deref<Macro>();}},
+    $Macro {{
+        deref = new _deref<$$Macro>();
+    }class $$Macro {
+    }},
     $Mapper,
     $Mapping,
     $Math$Utility,
-    $Nil($List) {{deref = new _deref<Nil>();}},
-    $Number {{deref = new _deref<Number>();}},
+    $Nil($List) {{
+        deref = new _deref<$$Nil>();
+    }class $$Nil {
+    }},
     $Output$Binary$Stream($Stream) {{
         class $$Output$Binary$Stream {
         }
@@ -193,13 +244,18 @@ public enum _ptrait implements _vtable<_ptrait> {
         }
         deref = new _deref<$$Output$Text$Stream>();
     }},
-    $Package {{deref = new _deref<Package>();}},
+    $Package {{
+        deref = new _deref<$$Package>();
+    }class $$Package {
+    }},
     $Parser,
     $Print$Function,
     $Print$High,
     $Print$Low,
     $Print$Macro,
-    $Process {{deref = new _deref<Process>();}},
+    $Process {{
+        deref = new _deref<Process>();
+    }},
     $Quarternary$Function,
     $Quintenary$Function,
     $Quote,
@@ -217,7 +273,9 @@ public enum _ptrait implements _vtable<_ptrait> {
     }},
     $Regex,
     $Resourcer,
-    $Semaphore {{deref = new _deref<Semaphore>();}},
+    $Semaphore {{
+        deref = new _deref<Semaphore>();
+    }},
     $Socket$Stream($Object, $In$Out$Text$Stream, $Input$Binary$Stream, $Input$Stream, $Input$Text$Stream, $Output$Binary$Stream, $Output$Stream, $Output$Text$Stream, $Stream) {
         {
             class $$Socket$Stream {
@@ -234,14 +292,22 @@ public enum _ptrait implements _vtable<_ptrait> {
     $Stream$Nil$Exception,
     $Streams$High,
     $Streams$Low,
-    $String($Sequence) {{deref = new _deref<String>();}},
+    $String($Sequence) {{
+        deref = new $$String();
+    }},
     $Struct$Interpreted,
     $Struct$Native,
-    $Struct($Object) {{deref = new _deref<Struct>();}},
+    $Struct($Object) {{
+        deref = new _deref<$$Struct>();
+    }class $$Struct {
+    }},
     $Structure,
     $Sxhash,
     $Symbol$Keyword,
-    $Symbol($Object) {{deref = new _deref<Symbol>();}},
+    $Symbol($Object) {{
+        deref = new _deref<$$Symbol>();
+    }class $$Symbol {
+    }},
     $Synonym$Stream($Stream) {{
         class $$Synonym$Stream {
         }
@@ -264,9 +330,21 @@ public enum _ptrait implements _vtable<_ptrait> {
     $Unit$Test_Cyc$LTiny,
     $User$IO,
     $Value,
-    $Vector($Sequence) {{deref = new _deref<Vector>();}},
+    $Vector($Sequence) {{
+        deref = new _deref<$$Vector>();
+    }class $$Vector {
+    }},
     $Zero$Arity$Function,;
 
+
+    /**
+     * uses its own name as a composition of traits, as well as adding from that which is passed in.
+     * <p/>
+     * this is almost certainly unfit
+     * for general consumption but
+     * the metaphoir is desired as
+     * a baseline.
+     */
     _ptrait(_ptrait... as) {
 
         for (_ptrait a : as) {
@@ -280,7 +358,7 @@ public enum _ptrait implements _vtable<_ptrait> {
         }
     }
 
-    public <$ extends _ptrait> boolean is(_ptrait $) {
+    public boolean is(_ptrait ptrait) {
         return false;
     }
 
@@ -288,13 +366,18 @@ public enum _ptrait implements _vtable<_ptrait> {
         return null;
     }
 
-    public int getOffset() {
+    public int $as$extent$offset$int() {
         return 0;
     }
 
-    public int getSize() {
+    public int $as$extent$length$int() {
         return 0;
     }
+
+    public _vtable<?> $(_ptr... p) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 
     _deref deref;
 
@@ -304,20 +387,3 @@ public enum _ptrait implements _vtable<_ptrait> {
 }
 
 
-class Sequence {
-}
-
-class Symbol {
-}
-
-class Function {
-}
-
-class HashtableIterator {
-}
-
-class Struct {
-}
-
-class Environment {
-}

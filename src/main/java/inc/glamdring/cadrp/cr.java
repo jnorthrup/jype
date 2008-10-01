@@ -100,7 +100,7 @@ public <T> T[] _(T... s) {return s;}
     echo enum 'ad{';
     for i in ${z[*]};
     do
-    echo -n c${i}r'{
+    echo -n c${i}$r'{
     public <T>T[] _$(T ... $s) {
     return (T[])';
     for j in $(seq ${#i});
@@ -114,12 +114,12 @@ public <T> T[] _(T... s) {return s;}
             done;
             echo ';}},';
             echo -e "\n" >> .impl;
-            echo -e ' //public static <T>'{Collection\<\?\>,T\[\]}' c'${i}'r('{Collection\<T\>,T...}'$s){return c'${i}'r._$($s);};'"\n" >> .impl;
-            echo -e ' //  public static <T> T[] c'${i}'r(Collection<?> $s) {return c'${i}'r._$($s);};'"\n" >> .impl;
-            echo -e ' //public static <T> T[] c'${i}'r(Collection<?> $s) {return c'${i}'r._$($s);};'"\n" >> .impl;
-            echo -e ' public static <T> T[] c'${i}'r(final T... $s) {return c'${i}'r._$($s);};'"\n" >> .impl;
-            echo -e  ' // public static <T> Collection<?> c'${i}'r(T[]... $s) {return c'${i}'r._$($s);};'"\n" >> .impl;
-            echo -e ' // public static Collection<?> c'${i}'r(Collection<?>... $s) {return c'${i}'r._$($s);};'"\n" >> .impl;
+            echo -e ' //public static <T>'{Collection\<\?\>,T\[\]}' c'${i}'$r('{Collection\<T\>,T...}'$s){return c'${i}'$r._$($s);};'"\n" >> .impl;
+            echo -e ' //  public static <T> T[] c'${i}'$r(Collection<?> $s) {return c'${i}'$r._$($s);};'"\n" >> .impl;
+            echo -e ' //public static <T> T[] c'${i}'$r(Collection<?> $s) {return c'${i}'$r._$($s);};'"\n" >> .impl;
+            echo -e ' public static <T> T[] c'${i}'$r(final T... $s) {return c'${i}'$r._$($s);};'"\n" >> .impl;
+            echo -e  ' // public static <T> Collection<?> c'${i}'$r(T[]... $s) {return c'${i}'$r._$($s);};'"\n" >> .impl;
+            echo -e ' // public static Collection<?> c'${i}'$r(Collection<?>... $s) {return c'${i}'$r._$($s);};'"\n" >> .impl;
         done;
         echo -e '; \n public <T>T _$(T...$s){return (T)$s;}';
         echo "};//gen by ${0}" >> .impl;

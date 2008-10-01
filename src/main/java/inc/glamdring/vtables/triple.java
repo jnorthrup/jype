@@ -1,6 +1,7 @@
 package inc.glamdring.vtables;
 
-import java.net.URI;
+import static inc.glamdring.vtables._ptrait.$String;
+
 import java.nio.ByteBuffer;
 import java.util.EnumSet;
 
@@ -9,20 +10,27 @@ import java.util.EnumSet;
  * exploring symbolic unions
  */
 
-public enum Triple implements _vtable<Triple>, _arc<URI, $String> {
-    s,
-    p,
-    o;
+public enum Triple implements _vtable<Triple> {
+    s($String),
+    p($String),
+    o($String);
 
 
-    static Class c;
+    _vtable $; 
     String $as$comment$String = "an atomic graph vertice.";
     final int $as$extent$length$int;
     final int $as$extent$offset$int;
     private static int $as$Sequence$length$int;
-    private int recordLen;
+    final static int recordLen = values()[values().length-1].$as$Sequence$length$int+values()[values().length-1].$as$extent$offset$int();
     private static ByteBuffer byteBuffer;
     private ByteBuffer buffer;
+
+    Triple(_vtable vtable, int... dim) {
+        $ =vtable;
+        $as$extent$length$int=vtable.$as$extent$length$int();
+        $as$extent$offset$int=vtable.$as$extent$offset$int();
+        
+    }
 
 
     /**
@@ -39,7 +47,7 @@ public enum Triple implements _vtable<Triple>, _arc<URI, $String> {
      */
     private Triple(Triple prototype, Integer... dim) {
         $as$extent$offset$int = init($as$extent$length$int = (dim.length > 0 && dim[0] != null && dim[0] >= 0 ? dim[0] : prototype.$as$extent$length$int),
-                                     dim.length > 1 && dim[1] != null && dim[1] >= 0 ? dim[1] : prototype.$as$extent$offset$int);
+                dim.length > 1 && dim[1] != null && dim[1] >= 0 ? dim[1] : prototype.$as$extent$offset$int);
     }
 
     Triple(int... dim) {
@@ -55,140 +63,48 @@ public enum Triple implements _vtable<Triple>, _arc<URI, $String> {
      * @param mark       optional defaults of reblocking params.  mark supplies first and last blocks to encompass a new block byte-union.  default marks are first and last, respectively.   if omitted, this provides the enum class a means of delivering itself into it's functor as a single current-rerdSize chunk.
      */
     private Triple(Boolean keepOffset, Triple... mark) {
-        if (keepOffset == null) {
+        if (keepOffset != null) {
+            Triple prev = values()[ordinal() - 1];
+            $as$extent$offset$int =
+                    !keepOffset ?
+                            init($as$extent$length$int = prev.$as$extent$length$int)
+                            : init($as$extent$length$int = prev.$as$extent$length$int, prev.$as$extent$length$int + prev.$as$extent$offset$int);
+        } else {
+
+            //on null, default start=0
             $as$extent$offset$int = mark.length > 1 ? mark[1].$as$extent$offset$int + mark[1].$as$extent$length$int : 0;
+
+            //on null default size=all
             $as$extent$length$int = mark.length > 0 ? $as$extent$offset$int - mark[0].$as$extent$offset$int : getRecordLen();
-            return;
         }
-        Triple prev = values()[ordinal() - 1];
-        $as$extent$offset$int =
-                !keepOffset ? init($as$extent$length$int = prev.$as$extent$length$int) : init($as$extent$length$int = prev.$as$extent$length$int, prev.$as$extent$length$int + prev.$as$extent$offset$int);
     }
 
     public int getRecordLen() {
         return recordLen;
     }
 
-//    static public void main(String[] a) {
-//        final String[] strings = {"foo", "sdasadasd", "dsfasdfasdfasdfa"};
-//        final ByteBuffer heap = ByteBuffer.allocate(2222);
-//        int j = 0;
-//
-//        final ByteBuffer iterBuffer = heap.duplicate();
-//
-//        heap.position(Triple.$as$Sequence$length$int);
-//
-//        /**
-//         * pascal strings
-//         */
-//        heap.putInt(s.$as$extent$offset$int, heap.position()).
-//                putInt(strings[j].getBytes().length).put(strings[j++].getBytes()).
-//                putInt(p.$as$extent$offset$int, heap.position()).
-//                putInt(strings[j].getBytes().length).put(strings[j++].getBytes()).
-//                putInt(o.$as$extent$offset$int, heap.position()).
-//                putInt(strings[j].getBytes().length).put(strings[j++].getBytes());
-//
-//
-//        final ArrayList<$Ptr$Deref> ptr_derefs = new ArrayList<$Ptr$Deref>();
-//
-//        $Ptr$Deref ptr_deref = new $Ptr$Deref(heap);
-//        ptr_deref.$(heap.getInt(s.$as$extent$offset$int));
-//        ptr_derefs.add(ptr_deref);
-//        ptr_deref = new $Ptr$Deref(heap);
-//        ptr_deref.$(heap.getInt(p.$as$extent$offset$int));
-//        ptr_derefs.add(ptr_deref);
-//        ptr_deref = new $Ptr$Deref(heap);
-//        ptr_deref.$(heap.getInt(o.$as$extent$offset$int));
-//        ptr_derefs.add(ptr_deref);
-//
-//        heap.flip();
-//
-//        final Iterator<String> iterator = new Iterator<String>() {
-//            ByteBuffer
-//                    byteBuffer = (ByteBuffer) iterBuffer.asReadOnlyBuffer().duplicate().rewind();
-//
-//
-//            public boolean hasNext() {
-//                return byteBuffer.hasRemaining();
-//            }
-//
-//            public String next() {
-//
-//                final int addr = byteBuffer.getInt();
-//                final ByteBuffer buffer1 = (ByteBuffer) iterBuffer.slice().position(addr);
-//
-//                buffer1.slice();
-//                buffer1.limit(buffer1.getInt() + 4);
-//                return buffer1.asCharBuffer().toString();
-//            }
-//
-//            public void remove() {
-//                throw new IllegalArgumentException();
-//            }
-//        };
-//    }
 
-    public <$ extends _ptrait> boolean is(_ptrait $) {
-        return false;  //todo: verify for a purpose
+    public boolean is(_ptrait ptrait) {
+        return getPrimaryTraits().contains(ptrait);  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     public EnumSet<_ptrait> getPrimaryTraits() {
-        return null;  //todo: verify for a purpose
+        return EnumSet.of(_ptrait.$Array, _ptrait.$Cons);  //todo: verify for a purpose
     }
 
-    public int getOffset() {
+    public int $as$extent$offset$int() {
         return $as$extent$offset$int;
     }
 
-    public int getSize() {
+    public int $as$extent$length$int() {
         return $as$extent$length$int;
     }
 
-    public URI rol(_arc<URI, $String>... p) {
-        for (_arc<URI, $String> uri$String_arc : p) {
-            return uri$String_arc.rol(p);
-        }
-
-        return null;
+    public _vtable<?> $(_ptr... p) {
+        return $;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public $String ror(_arc<URI, $String>... ses) {
-        for (_arc<URI, $String> se : ses) {
-            return se.ror(ses);
-        }
-        return null;
+    public Triple reify(_ptr... ptr) {
+        return (Triple) $().$(ptr);  //To change body of implemented methods use File | Settings | File Templates.
     }
-
-    public _arc<URI, $String> join(final URI uri, $String... r) {
-        for (final $String $String : r) {
-
-            return new _arc<URI, $String>() {
-                public URI rol(_arc<URI, $String>... p) {
-
-                    return uri;
-                }
-
-                public $String ror(_arc<URI, $String>... ses) {
-                    return $String;  //todo: verify for a purpose
-                }
-
-
-                public _arc<URI, $String> join(URI uri, $String... r) {
-                    return this;
-                }
-
-                public URI reify(_ptr... ptr) {
-                    return URI.create($String.rol());  //todo: verify for a purpose
-                }
-            };
-        }
-        return null;
-    }
-
-    public URI reify(_ptr... ptr) {
-        final String s1 = new $String().reify(ptr);
-        return URI.create(s1);
-
-    }
-
 }

@@ -22,9 +22,9 @@ public class _deref<T> implements _arc<T, _ptr> {
      * @param p
      * @return
      */
-    public T rol(_arc<T, _ptr>... p) {
+    public T l$(_arc<T, _ptr>... p) {
         for (_arc<T, _ptr> bound_ref_arc : p) {
-            join(bound_ref_arc.rol(), ror());
+            bind(bound_ref_arc.l$(), $r());
         }
         return l;
     }
@@ -36,28 +36,31 @@ public class _deref<T> implements _arc<T, _ptr> {
      * @param ses
      * @return
      */
-    public _ptr ror(_arc<T, _ptr>... ses) {
+    public _ptr $r(_arc<T, _ptr>... ses) {
         for (_arc<T, _ptr> se : ses) {
-            join(l, se.ror());
+            bind(l, se.$r());
         }
         return r;
     }
 
 
     /**
+     * 
+     * bind and write pointer 
+     * 
      * @param t   object
      * @param ref heap waiting for a write, several
      * @return ussualy this
      */
-    public _arc<T, _ptr> join(T t, _ptr... ref) {
+    public _arc<T, _ptr> bind(T t, _ptr... ref) {
         byte[] bytes = null;
         l = t;
 
         for (_ptr ref1 : ref) {
             bytes = (bytes == null) ?
                     X_STREAM.toXML(t).getBytes() : bytes;
-            Integer integer = ref1.ror();
-            this.r = (_ptr) ref1.join(ref1.rol().putInt(bytes.length).put(bytes), integer);
+            Integer integer = ref1.$r();
+            this.r = (_ptr) ref1.bind(ref1.l$().putInt(bytes.length).put(bytes), integer);
         }
         return this;
     }
@@ -70,8 +73,8 @@ public class _deref<T> implements _arc<T, _ptr> {
      */
     public T reify(_ptr... ptr) {
         for (_ptr ptr1 : ptr) {
-            ByteBuffer buffer = ptr1.rol();
-            Integer integer = ptr1.ror();
+            ByteBuffer buffer = ptr1.l$();
+            Integer integer = ptr1.$r();
             buffer.getInt(integer);
             ByteBuffer buffer1 = (ByteBuffer) buffer.slice().limit(integer);
             String s = buffer1.asCharBuffer().toString();
@@ -79,7 +82,7 @@ public class _deref<T> implements _arc<T, _ptr> {
         }
 
 
-        return rol();
+        return l$();
     }
 
 }

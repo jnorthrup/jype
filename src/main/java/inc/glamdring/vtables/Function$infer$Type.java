@@ -3,8 +3,8 @@ package inc.glamdring.vtables;
 import static javolution.lang.Reflection.Method;
 import javolution.util.FastSet;
 
+import static java.lang.Class.forName;
 import java.lang.reflect.Field;
-import static java.lang.Class.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.ByteChannel;
 import java.util.Arrays;
@@ -15,7 +15,7 @@ import java.util.Map;
  * Date: Sep 14, 2008
  * Time: 5:19:58 PM
  */
-public enum Function$infer$Type  {
+public enum Function$infer$Type {
     $as$Function(Method.class, 0),
     $as$byte(byte.class, 1),
     $as$short(short.class, 2),
@@ -29,10 +29,11 @@ public enum Function$infer$Type  {
     $as$byte$prefixes$Sequence$byte$char(ByteBuffer.class, 256);
 
     static {
-    final Boolean exact = null;
+        final Boolean exact = null;
         final Boolean min = false;
         final Boolean max = true;
     }
+
     private Boolean $ternary$is$max$min = null;
     private final int[] $as$Sequence$range$int;
 
@@ -73,8 +74,7 @@ public enum Function$infer$Type  {
 
 
         }
-        return (
-                bag.isEmpty() ? null : bag);
+        return (bag.isEmpty() ? null : bag);
     }
 
     /**
@@ -105,7 +105,7 @@ public enum Function$infer$Type  {
             for (Package aPackage : testme) {
                 final String cTest = aPackage.getName() + "." + s;
                 try {
-                    results.add(forName(cTest)) ;
+                    results.add(forName(cTest));
                 } catch (ClassNotFoundException e) {
                 }
             }

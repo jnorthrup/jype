@@ -397,12 +397,12 @@ public class function$layout$VTable$Slot$source {
 //                generated += new Callable<String>() {
 //                    public String call() throws Exception {
 //
-//                        final Class<?> $as$value = (Class<?>) map.rol($as$Value$Type$Class).rol();
-//                        final Integer $as$offset = (Integer) map.rol($as$extent$offset$int).rol();
-//                        final Class<? extends Enum<?>> ___subrecord___ = (Class<? extends Enum<?>>) map.rol( $as$Visitor$_$$Symbol$String).rol();
-//                        final Integer $as$length = (Integer) map.rol($as$extent$length$int
-//                        ).rol();
-//                        final String $as$comment = (String) map.rol($as$comment$String).rol();
+//                        final Class<?> $as$value = (Class<?>) map.l$($as$Value$Type$Class).l$();
+//                        final Integer $as$offset = (Integer) map.l$($as$extent$offset$int).l$();
+//                        final Class<? extends Enum<?>> ___subrecord___ = (Class<? extends Enum<?>>) map.l$( $as$Visitor$_$$Symbol$String).l$();
+//                        final Integer $as$length = (Integer) map.l$($as$extent$length$int
+//                        ).l$();
+//                        final String $as$comment = (String) map.l$($as$comment$String).l$();
 ////                        final Pair<String, Pair<String, String>> pair = Function$infer$Type.$(Sequence$Slot$layout$Enum$layout.$as$Value$Type$Class.$(map));
 //                        Class futureValtype =
 //                                Function$infer$Type.$($as$length);
@@ -410,7 +410,7 @@ public class function$layout$VTable$Slot$source {
 //                        final String slotOpen = " * <tr>";
 //                        final String attributeOpen = "<td>";
 //                        final String attributeClose = "</td>";
-//                        final Class<?> $value$Type = futureValtype.rol();
+//                        final Class<?> $value$Type = futureValtype.l$();
 //                        final String longClassName = $value$Type.getCanonicalName();
 //                        return slotOpen + attributeOpen + theSlot.name() + attributeClose + attributeOpen +
 //                               (as$String$as$Hex($as$length))
@@ -420,7 +420,7 @@ public class function$layout$VTable$Slot$source {
 //                               + ($as$value == null
 //                                  ? " (" + longClassName
 //                                    + ") " + theSlot.name()
-//                                    + "=src.rol" + $value$Type.getName()
+//                                    + "=src.l$" + $value$Type.getName()
 //                                    + "(" +
 //                                    (as$String$as$Hex($as$offset))
 //                                    + ")" + pair.getSecond().getSecond() : $as$value.getCanonicalName())

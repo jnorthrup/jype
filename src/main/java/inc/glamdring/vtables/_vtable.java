@@ -4,13 +4,24 @@ import java.util.EnumSet;
 
 /**
  * vtable has a bag of traits, an array following a bitmap
- * <p/>
- * the Traits are indicated on a vtable caps" bitmaCp 0...63 important traits matter.
  */
-public interface _vtable<$ extends Enum<$> & _vtable<? super $>> {
-    <$ extends _ptrait> boolean is(_ptrait $);
+public interface _vtable<sType extends Enum<sType> & _vtable<? super sType>>  
+{
 
+    /**
+     * can this be coerced right as ...
+     * @param ptrait
+     * @return can be coerced to ?
+     */
+    boolean is(_ptrait ptrait);
+
+    /**
+     * a bitset of possible coercion targets 
+     * 
+     * @return a EnumSet bitmap
+     */
     EnumSet<_ptrait> getPrimaryTraits();
-    int getOffset();
-    int getSize();
+    int $as$extent$offset$int();
+    int $as$extent$length$int();
+    _vtable<?> $(_ptr...p);
 }

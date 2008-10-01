@@ -8,15 +8,15 @@ package inc.glamdring.vtables;
 public interface _arc<l, r> extends _proto<l> {
 
     //getter
-    l rol(_arc<l, r>... p);
+    l l$(_arc<l, r>... p);
     //getter
 
     //setter
-    r ror(_arc<l, r>... ses);
+    r $r(_arc<l, r>... ses);
     //setter
 
     //factory
-    _arc<l, r> join(l l, r... r);
+    _arc<l, r> bind(l l, r... r);
     //factory
- 
+
 }

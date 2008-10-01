@@ -7,22 +7,22 @@ public class _ptr implements _arc<ByteBuffer, Integer> {
     private ByteBuffer buf;
 
 
-    public ByteBuffer rol(_arc<ByteBuffer, Integer>... p) {
+    public ByteBuffer l$(_arc<ByteBuffer, Integer>... p) {
 
         for (_arc<ByteBuffer, Integer> pp : p) {
-           join(pp.rol(),pp.ror());
+           bind(pp.l$(),pp.$r());
         }
         return buf;
     }
 
-    public Integer ror(_arc<ByteBuffer, Integer>... ses) {
+    public Integer $r(_arc<ByteBuffer, Integer>... ses) {
         for (_arc<ByteBuffer, Integer> se : ses) {
-            join(se.rol(),se.ror( ));
+            bind(se.l$(),se.$r( ));
         }
         return buf.position();
     }
 
-    public _arc<ByteBuffer, Integer> join(ByteBuffer byteBuffer, Integer... r) {
+    public _arc<ByteBuffer, Integer> bind(ByteBuffer byteBuffer, Integer... r) {
 
         for (Integer integer : r) {
            buf= (ByteBuffer) byteBuffer.position(integer);
@@ -31,10 +31,10 @@ public class _ptr implements _arc<ByteBuffer, Integer> {
         return this;
     }
 
-    public ByteBuffer reify(_ptr... ptr) {
+    public ByteBuffer $½(_ptr... ptr) {
         for (_ptr ptr1 : ptr) {
-            return ptr1.rol();
+            return ptr1.l$();
         }
-        return rol();
+        return l$();
     }
 }
