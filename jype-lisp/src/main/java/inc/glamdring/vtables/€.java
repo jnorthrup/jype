@@ -1,7 +1,7 @@
 package inc.glamdring.vtables;
 
 /**
- *  midpoint between 2 casts
+ *  edge class.   midpoint between 2 casts
  * 
  * 
  * type,edge, delta, coersion points, etc.
