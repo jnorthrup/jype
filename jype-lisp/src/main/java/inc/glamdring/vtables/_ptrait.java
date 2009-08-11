@@ -12,9 +12,9 @@ import java.util.concurrent.locks.Lock;
  * Date: Sep 14, 2008
  * Time: 2:31:31 AM
  */
-public enum _ptrait implements _vtable<_ptrait>, _proto<£> {
+public enum _ptrait implements _vtable<_ptrait>, _proto<Î©> {
     $Object {{
-        £ = new £<Object>();
+        Î© = new Î©<Object>();
     }}, $Access,
     $Arg,
     $Arity,
@@ -73,38 +73,38 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<£> {
     $Zero,
 
     $Sequence($Object) {{
-        £ = new £<£Sequence>();
-    }class £Sequence {
+        Î© = new Î©<Â£Sequence>();
+    }class Â£Sequence {
     }},
     $List($Sequence) {{
-        £ = new £<£List>();
-    }class £List {
+        Î© = new Î©<Â£List>();
+    }class Â£List {
     }},
     $Cons($List) {{
-        £ = new £<£Cons>();
-    }class £Cons {
+        Î© = new Î©<Â£Cons>();
+    }class Â£Cons {
     }},
     $Operator($Object) {{
-        £ = new £<£Operator>();
-    }class £Operator {
+        Î© = new Î©<Â£Operator>();
+    }class Â£Operator {
     }},
     $Function($Operator) {{
-        £ = new £<£Function>();
-    }class £Function {
+        Î© = new Î©<Â£Function>();
+    }class Â£Function {
     }},
     $Stream {{
-        £ = new £<£Stream>();
-    }class £Stream {
+        Î© = new Î©<Â£Stream>();
+    }class Â£Stream {
     }},
 
     $Number {{
-        £ = new £<Number>();
+        Î© = new Î©<Number>();
     }},
     $Input$Stream,
     $Alien,
     $Any {{
-        £ = new £<£Any>();
-    }class £Any {
+        Î© = new Î©<Â£Any>();
+    }class Â£Any {
     }},
     $Array$List,
     $Array$Sequence,
@@ -114,28 +114,28 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<£> {
     $Binary$Function,
     $Binary$Stream,
     $Boolean {{
-        £ = new £<Boolean>();
+        Î© = new Î©<Boolean>();
     }},
     $Broadcast$Stream($Stream) {{
-        class £Broadcast$Stream {
+        class Â£Broadcast$Stream {
         }
-        £ = new £<£Broadcast$Stream>();
+        Î© = new Î©<Â£Broadcast$Stream>();
     }},
     $Byte,
     $Catchable$Throw,
     $Cdestructuring$Bind,
     $Character($Object) {{
-        £ = new £<Character>();
+        Î© = new Î©<Character>();
     }},
     $Char($Character) {{
-        £ = new £<Character>();
+        Î© = new Î©<Character>();
     }},
     $Character$Name,
     $Compatibility,
     $Compiled$Function($Function, $Operator) {{
-        class £Compiled$Function {
+        class Â£Compiled$Function {
         }
-        £ = new £<£Compiled$Function>();
+        Î© = new Î©<Â£Compiled$Function>();
     }},
     $Complex$Special$Form,
     $Condition$Macro,
@@ -143,22 +143,22 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<£> {
     $Cons$High,
     $Cons$Low,
     $Cons$Pair($Cons) {{
-        class £Cons$Pair {
+        class Â£Cons$Pair {
         }
-        £ = new £<£Cons$Pair>();
+        Î© = new Î©<Â£Cons$Pair>();
     }},
     $Double {{
-        £ = new £<Double>();
+        Î© = new Î©<Double>();
     }},
     $Double$Float {{
-        class £Double$Float {
+        class Â£Double$Float {
         }
-        £ = new £<£Double$Float>();
+        Î© = new Î©<Â£Double$Float>();
     }},
     $Dynamic,
     $Environment() {{
-        £ = new £<£Environment>();
-    }class £Environment {
+        Î© = new Î©<Â£Environment>();
+    }class Â£Environment {
     }},
     $Equality,
     $Eval,
@@ -166,88 +166,88 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<£> {
     $Filesys,
     $Fixnum,
     $Float {{
-        £ = new £<Float>();
+        Î© = new Î©<Float>();
     }},
     $Foreign,
     $Format,
     $Function$Arg$List$Description,
     $Guid {{
-        £ = new £<£Guid>();
-    }class £Guid {
+        Î© = new Î©<Â£Guid>();
+    }class Â£Guid {
     }},
     $Hashtable$High,
     $Hashtable$Iterator {{
-        class £Hashtable$Iterator {
+        class Â£Hashtable$Iterator {
         }
-        £ = new £<£Hashtable$Iterator>();
+        Î© = new Î©<Â£Hashtable$Iterator>();
     }},
     $Hashtable,
     $In$Out$Binary$Stream($Stream) {{
-        class £In$Out$Binary$Stream {
+        class Â£In$Out$Binary$Stream {
         }
-        £ = new £<£In$Out$Binary$Stream>();
+        Î© = new Î©<Â£In$Out$Binary$Stream>();
     }},
     $In$Out$Text$Stream($Stream) {{
-        class £In$Out$Text$Stream {
+        class Â£In$Out$Text$Stream {
         }
-        £ = new £<£In$Out$Text$Stream>();
+        Î© = new Î©<Â£In$Out$Text$Stream>();
     }},
     $Input$Binary$Stream($Input$Stream, $Object, $Stream) {{
-        class £Input$Binary$Stream {
+        class Â£Input$Binary$Stream {
         }
-        £ = new £<£Input$Binary$Stream>();
+        Î© = new Î©<Â£Input$Binary$Stream>();
     }},
     $Input$Text$Stream($Input$Binary$Stream, $Input$Stream, $Object, $Stream) {{
-        class £Input$Text$Stream {
+        class Â£Input$Text$Stream {
         }
-        £ = new £<£Input$Text$Stream>();
+        Î© = new Î©<Â£Input$Text$Stream>();
     }},
     $Integer($Number) {{
-        £ = new £<Integer>();
+        Î© = new Î©<Integer>();
     }},
     $Int($Integer) {{
-        £ = new £<Integer>();
+        Î© = new Î©<Integer>();
     }},
     $Integer$Bignum,
     $Interpreted$Function($Function),
     $Invalid$Expression$Exception,
     $Keyhash {{
-        £ = new £<£Keyhash>();
-    }class £Keyhash {
+        Î© = new Î©<Â£Keyhash>();
+    }class Â£Keyhash {
     }},
     $Keyhash$Iterator,
     $Lock {{
-        £ = new £<Lock>();
+        Î© = new Î©<Lock>();
     }},
     $Long($Integer) {{
-        £ = new £<Long>();
+        Î© = new Î©<Long>();
     }},
     $Long$Bignum,
     $Macro {{
-        £ = new £<£Macro>();
-    }class £Macro {
+        Î© = new Î©<Â£Macro>();
+    }class Â£Macro {
     }},
     $Mapper,
     $Mapping,
     $Math$Utility,
     $Nil($List) {{
-        £ = new £<£Nil>();
-    }class £Nil {
+        Î© = new Î©<Â£Nil>();
+    }class Â£Nil {
     }},
     $Output$Binary$Stream($Stream) {{
-        class £Output$Binary$Stream {
+        class Â£Output$Binary$Stream {
         }
-        £ = new £<£Output$Binary$Stream>();
+        Î© = new Î©<Â£Output$Binary$Stream>();
     }},
     $Output$Stream,
     $Output$Text$Stream($Stream) {{
-        class £Output$Text$Stream {
+        class Â£Output$Text$Stream {
         }
-        £ = new £<£Output$Text$Stream>();
+        Î© = new Î©<Â£Output$Text$Stream>();
     }},
     $Package {{
-        £ = new £<£Package>();
-    }class £Package {
+        Î© = new Î©<Â£Package>();
+    }class Â£Package {
     }},
     $Parser,
     $Print$Function,
@@ -255,33 +255,33 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<£> {
     $Print$Low,
     $Print$Macro,
     $Process {{
-        £ = new £<Process>();
+        Î© = new Î©<Process>();
     }},
     $Quarternary$Function,
     $Quintenary$Function,
     $Quote,
     $Random$Access$Stream,
     $Read$Write$Lock {{
-        class £Read$Write$Lock {
+        class Â£Read$Write$Lock {
         }
-        £ = new £<£Read$Write$Lock>();
+        Î© = new Î©<Â£Read$Write$Lock>();
     }},
     $Reader,
     $Regex$Pattern {{
-        class £Regex$Pattern {
+        class Â£Regex$Pattern {
         }
-        £ = new £<£Regex$Pattern>();
+        Î© = new Î©<Â£Regex$Pattern>();
     }},
     $Regex,
     $Resourcer,
     $Semaphore {{
-        £ = new £<Semaphore>();
+        Î© = new Î©<Semaphore>();
     }},
     $Socket$Stream($Object, $In$Out$Text$Stream, $Input$Binary$Stream, $Input$Stream, $Input$Text$Stream, $Output$Binary$Stream, $Output$Stream, $Output$Text$Stream, $Stream) {
         {
-            class £Socket$Stream {
+            class Â£Socket$Stream {
             }
-            £ = new £<£Socket$Stream>();
+            Î© = new Î©<Â£Socket$Stream>();
         }
     },
     $Sort,
@@ -294,25 +294,25 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<£> {
     $Streams$High,
     $Streams$Low,
     $String($Sequence) {{
-        £ = new £String();
+//        Î© = new Î©String();
     }},
     $Struct$Interpreted,
     $Struct$Native,
     $Struct($Object) {{
-        £ = new £<£Struct>();
-    }class £Struct {
+        Î© = new Î©<Â£Struct>();
+    }class Â£Struct {
     }},
     $Structure,
     $Sxhash,
     $Symbol$Keyword,
     $Symbol($Object) {{
-        £ = new £<£Symbol>();
-    }class £Symbol {
+        Î© = new Î©<Â£Symbol>();
+    }class Â£Symbol {
     }},
     $Synonym$Stream($Stream) {{
-        class £Synonym$Stream {
+        class Â£Synonym$Stream {
         }
-        £ = new £<£Synonym$Stream>();
+        Î© = new Î©<Â£Synonym$Stream>();
     }},
     $System$Info,
     $T,
@@ -332,13 +332,13 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<£> {
     $User$IO,
     $Value,
     $Vector($Sequence) {{
-        £ = new £<£Vector>();
-    }class £Vector {
+        Î© = new Î©<Â£Vector>();
+    }class Â£Vector {
     }},
     $Zero$Arity$Function,;
 
 
-    £ £;
+    Î© Î©;
     private EnumSet<_ptrait> traits;
     private _ptrait[] as;
 
@@ -371,12 +371,12 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<£> {
         return 0;
     }
 
-    public £<?> $() {
-        return £;
+    public Î©<?> $() {
+        return Î©;
     }
 
-    public £ reify($ void$) {
-        return £;  //todo: verify for a purpose
+    public Î© reify(Âµ void$) {
+        return Î©;  //todo: verify for a purpose
     }
 
 
@@ -467,5 +467,6 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<£> {
         return this.traits;
     }
 }
+
 
 

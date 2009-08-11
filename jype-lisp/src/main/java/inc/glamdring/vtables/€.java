@@ -1,40 +1,42 @@
 package inc.glamdring.vtables;
 
 /**
- *  edge class.   midpoint between 2 casts
- * 
- * 
+ * edge class.   midpoint between 2 casts
+ * <p/>
  * type,edge, delta, coersion points, etc.
- * 
+ * <p/>
  * User: jim
  * Date: Sep 18, 2008
  * Time: 6:05:14 AM
  */
-public interface �<l, r> extends _proto<l> {
+public interface €<Ω, µ> extends _proto<Ω> {
 
     /**
      * left type node with induction
      *
-     * @param p copy ctor/factory proto
+     * @param € copy ctor/factory proto
      * @return shift left
      */
-    l l$(�<l, r> p);
+    Ω Ω(€<Ω, µ> €);
 
     /**
      * right type node with induction
      *
-     * @param p copy ctor/factory proto
+     * @param € copy ctor/factory proto
      * @return right shift
      */
-    r $r(�<l, r> p);
+    µ µ(€<Ω, µ> €);
 
     /**
      * binds two types
      *
-     * @param l
-     * @param r
+     * @param Ω
+     * @param µ
      * @return fused arc
      */
-    �<l, r> bind(l l, r r);
+    €<Ω, µ> €(Ω Ω, µ µ);
 
 }
+/**
+ *  
+public interface €<Ω, µ> extends _proto<Ω> { Ω Ω(€<Ω, µ> €); µ µ(€<Ω, µ> €); €<Ω, µ> €(Ω Ω, µ µ);}*/

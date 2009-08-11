@@ -17,5 +17,6 @@
   </dependencies>
   <modules>
     <module>jype-lisp</module>
+    <module>jype-php</module>
   </modules>
 </project>
