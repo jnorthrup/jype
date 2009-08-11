@@ -8,7 +8,7 @@ interface _proto<l> {
      * @param void$
      * @return object
      */
-    l reify(µ void$);
+    l reify(_ptr void$);
 }
 
 

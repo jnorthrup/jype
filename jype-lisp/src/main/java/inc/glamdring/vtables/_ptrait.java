@@ -12,9 +12,9 @@ import java.util.concurrent.locks.Lock;
  * Date: Sep 14, 2008
  * Time: 2:31:31 AM
  */
-public enum _ptrait implements _vtable<_ptrait>, _proto<Ω> {
+public enum _ptrait implements _vtable<_ptrait>, _proto<_ref> {
     $Object {{
-        Ω = new Ω<Object>();
+        ref = new _ref<Object>();
     }}, $Access,
     $Arg,
     $Arity,
@@ -73,37 +73,37 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<Ω> {
     $Zero,
 
     $Sequence($Object) {{
-        Ω = new Ω<£Sequence>();
+        ref = new _ref<£Sequence>();
     }class £Sequence {
     }},
     $List($Sequence) {{
-        Ω = new Ω<£List>();
+        ref = new _ref<£List>();
     }class £List {
     }},
     $Cons($List) {{
-        Ω = new Ω<£Cons>();
+        ref = new _ref<£Cons>();
     }class £Cons {
     }},
     $Operator($Object) {{
-        Ω = new Ω<£Operator>();
+        ref = new _ref<£Operator>();
     }class £Operator {
     }},
     $Function($Operator) {{
-        Ω = new Ω<£Function>();
+        ref = new _ref<£Function>();
     }class £Function {
     }},
     $Stream {{
-        Ω = new Ω<£Stream>();
+        ref = new _ref<£Stream>();
     }class £Stream {
     }},
 
     $Number {{
-        Ω = new Ω<Number>();
+        ref = new _ref<Number>();
     }},
     $Input$Stream,
     $Alien,
     $Any {{
-        Ω = new Ω<£Any>();
+        ref = new _ref<£Any>();
     }class £Any {
     }},
     $Array$List,
@@ -114,28 +114,28 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<Ω> {
     $Binary$Function,
     $Binary$Stream,
     $Boolean {{
-        Ω = new Ω<Boolean>();
+        ref = new _ref<Boolean>();
     }},
     $Broadcast$Stream($Stream) {{
         class £Broadcast$Stream {
         }
-        Ω = new Ω<£Broadcast$Stream>();
+        ref = new _ref<£Broadcast$Stream>();
     }},
     $Byte,
     $Catchable$Throw,
     $Cdestructuring$Bind,
     $Character($Object) {{
-        Ω = new Ω<Character>();
+        ref = new _ref<Character>();
     }},
     $Char($Character) {{
-        Ω = new Ω<Character>();
+        ref = new _ref<Character>();
     }},
     $Character$Name,
     $Compatibility,
     $Compiled$Function($Function, $Operator) {{
         class £Compiled$Function {
         }
-        Ω = new Ω<£Compiled$Function>();
+        ref = new _ref<£Compiled$Function>();
     }},
     $Complex$Special$Form,
     $Condition$Macro,
@@ -145,19 +145,19 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<Ω> {
     $Cons$Pair($Cons) {{
         class £Cons$Pair {
         }
-        Ω = new Ω<£Cons$Pair>();
+        ref = new _ref<£Cons$Pair>();
     }},
     $Double {{
-        Ω = new Ω<Double>();
+        ref = new _ref<Double>();
     }},
     $Double$Float {{
         class £Double$Float {
         }
-        Ω = new Ω<£Double$Float>();
+        ref = new _ref<£Double$Float>();
     }},
     $Dynamic,
     $Environment() {{
-        Ω = new Ω<£Environment>();
+        ref = new _ref<£Environment>();
     }class £Environment {
     }},
     $Equality,
@@ -166,87 +166,87 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<Ω> {
     $Filesys,
     $Fixnum,
     $Float {{
-        Ω = new Ω<Float>();
+        ref = new _ref<Float>();
     }},
     $Foreign,
     $Format,
     $Function$Arg$List$Description,
     $Guid {{
-        Ω = new Ω<£Guid>();
+        ref = new _ref<£Guid>();
     }class £Guid {
     }},
     $Hashtable$High,
     $Hashtable$Iterator {{
         class £Hashtable$Iterator {
         }
-        Ω = new Ω<£Hashtable$Iterator>();
+        ref = new _ref<£Hashtable$Iterator>();
     }},
     $Hashtable,
     $In$Out$Binary$Stream($Stream) {{
         class £In$Out$Binary$Stream {
         }
-        Ω = new Ω<£In$Out$Binary$Stream>();
+        ref = new _ref<£In$Out$Binary$Stream>();
     }},
     $In$Out$Text$Stream($Stream) {{
         class £In$Out$Text$Stream {
         }
-        Ω = new Ω<£In$Out$Text$Stream>();
+        ref = new _ref<£In$Out$Text$Stream>();
     }},
     $Input$Binary$Stream($Input$Stream, $Object, $Stream) {{
         class £Input$Binary$Stream {
         }
-        Ω = new Ω<£Input$Binary$Stream>();
+        ref = new _ref<£Input$Binary$Stream>();
     }},
     $Input$Text$Stream($Input$Binary$Stream, $Input$Stream, $Object, $Stream) {{
         class £Input$Text$Stream {
         }
-        Ω = new Ω<£Input$Text$Stream>();
+        ref = new _ref<£Input$Text$Stream>();
     }},
     $Integer($Number) {{
-        Ω = new Ω<Integer>();
+        ref = new _ref<Integer>();
     }},
     $Int($Integer) {{
-        Ω = new Ω<Integer>();
+        ref = new _ref<Integer>();
     }},
     $Integer$Bignum,
     $Interpreted$Function($Function),
     $Invalid$Expression$Exception,
     $Keyhash {{
-        Ω = new Ω<£Keyhash>();
+        ref = new _ref<£Keyhash>();
     }class £Keyhash {
     }},
     $Keyhash$Iterator,
     $Lock {{
-        Ω = new Ω<Lock>();
+        ref = new _ref<Lock>();
     }},
     $Long($Integer) {{
-        Ω = new Ω<Long>();
+        ref = new _ref<Long>();
     }},
     $Long$Bignum,
     $Macro {{
-        Ω = new Ω<£Macro>();
+        ref = new _ref<£Macro>();
     }class £Macro {
     }},
     $Mapper,
     $Mapping,
     $Math$Utility,
     $Nil($List) {{
-        Ω = new Ω<£Nil>();
+        ref = new _ref<£Nil>();
     }class £Nil {
     }},
     $Output$Binary$Stream($Stream) {{
         class £Output$Binary$Stream {
         }
-        Ω = new Ω<£Output$Binary$Stream>();
+        ref = new _ref<£Output$Binary$Stream>();
     }},
     $Output$Stream,
     $Output$Text$Stream($Stream) {{
         class £Output$Text$Stream {
         }
-        Ω = new Ω<£Output$Text$Stream>();
+        ref = new _ref<£Output$Text$Stream>();
     }},
     $Package {{
-        Ω = new Ω<£Package>();
+        ref = new _ref<£Package>();
     }class £Package {
     }},
     $Parser,
@@ -255,7 +255,7 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<Ω> {
     $Print$Low,
     $Print$Macro,
     $Process {{
-        Ω = new Ω<Process>();
+        ref = new _ref<Process>();
     }},
     $Quarternary$Function,
     $Quintenary$Function,
@@ -264,24 +264,24 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<Ω> {
     $Read$Write$Lock {{
         class £Read$Write$Lock {
         }
-        Ω = new Ω<£Read$Write$Lock>();
+        ref = new _ref<£Read$Write$Lock>();
     }},
     $Reader,
     $Regex$Pattern {{
         class £Regex$Pattern {
         }
-        Ω = new Ω<£Regex$Pattern>();
+        ref = new _ref<£Regex$Pattern>();
     }},
     $Regex,
     $Resourcer,
     $Semaphore {{
-        Ω = new Ω<Semaphore>();
+        ref = new _ref<Semaphore>();
     }},
     $Socket$Stream($Object, $In$Out$Text$Stream, $Input$Binary$Stream, $Input$Stream, $Input$Text$Stream, $Output$Binary$Stream, $Output$Stream, $Output$Text$Stream, $Stream) {
         {
             class £Socket$Stream {
             }
-            Ω = new Ω<£Socket$Stream>();
+            ref = new _ref<£Socket$Stream>();
         }
     },
     $Sort,
@@ -294,25 +294,25 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<Ω> {
     $Streams$High,
     $Streams$Low,
     $String($Sequence) {{
-//        Ω = new ΩString();
+//        _ref = new ΩString();
     }},
     $Struct$Interpreted,
     $Struct$Native,
     $Struct($Object) {{
-        Ω = new Ω<£Struct>();
+        ref = new _ref<£Struct>();
     }class £Struct {
     }},
     $Structure,
     $Sxhash,
     $Symbol$Keyword,
     $Symbol($Object) {{
-        Ω = new Ω<£Symbol>();
+        ref = new _ref<£Symbol>();
     }class £Symbol {
     }},
     $Synonym$Stream($Stream) {{
         class £Synonym$Stream {
         }
-        Ω = new Ω<£Synonym$Stream>();
+        ref = new _ref<£Synonym$Stream>();
     }},
     $System$Info,
     $T,
@@ -332,13 +332,13 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<Ω> {
     $User$IO,
     $Value,
     $Vector($Sequence) {{
-        Ω = new Ω<£Vector>();
+        ref = new _ref<£Vector>();
     }class £Vector {
     }},
     $Zero$Arity$Function,;
 
 
-    Ω Ω;
+    _ref ref;
     private EnumSet<_ptrait> traits;
     private _ptrait[] as;
 
@@ -371,12 +371,12 @@ public enum _ptrait implements _vtable<_ptrait>, _proto<Ω> {
         return 0;
     }
 
-    public Ω<?> $() {
-        return Ω;
+    public _ref<?> $() {
+        return ref;
     }
 
-    public Ω reify(µ void$) {
-        return Ω;  //todo: verify for a purpose
+    public _ref reify(_ptr void$) {
+        return ref;  //todo: verify for a purpose
     }
 
 

@@ -54,35 +54,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="µ.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/µ.java">
+      <file leaf-file-name="_ref.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_ref.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="13" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
+            <state line="13" column="13" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ω.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/Ω.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="0" selection-start="1994" selection-end="1994" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ΩString.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/ΩString.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="782" selection-end="782" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="€.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/€.java">
+      <file leaf-file-name="_edge.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_edge.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="11" column="17" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
               <folding />
@@ -90,10 +72,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="€String$CharSequence.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/€String$CharSequence.java">
+      <file leaf-file-name="edgeString$CharSequence.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/edgeString$CharSequence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="1" selection-start="1017" selection-end="1017" vertical-scroll-proportion="0.0">
+            <state line="2" column="6" selection-start="38" selection-end="38" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -102,7 +84,7 @@
       <file leaf-file-name="_proto.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_proto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="19" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
+            <state line="42" column="0" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -117,28 +99,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_vtable.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="_vtable.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_vtable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="15" selection-start="125" selection-end="125" vertical-scroll-proportion="0.06943105">
+            <state line="16" column="0" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="£cstr.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/£cstr.java">
+      <file leaf-file-name="_ptrait.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_ptrait.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="23" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
+            <state line="14" column="12" selection-start="243" selection-end="243" vertical-scroll-proportion="-7.923077">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="£cstring.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/£cstring.java">
+      <file leaf-file-name="_ptr.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_ptr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="3" selection-start="609" selection-end="609" vertical-scroll-proportion="0.0">
+            <state line="9" column="29" selection-start="161" selection-end="161" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -340,6 +322,10 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="test" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -592,11 +578,11 @@
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291506" sideWeight="0.5" order="6" side_tool="false" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32841328" sideWeight="0.5" order="6" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8581081" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3607011" sideWeight="0.5" order="1" side_tool="false" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3607011" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21751101" sideWeight="0.63284135" order="3" side_tool="false" />
@@ -671,13 +657,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_ptrait.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="390" column="14" selection-start="7779" selection-end="7779" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/net/sourceforge/gui/TextPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="94" column="18" selection-start="2294" selection-end="2294" vertical-scroll-proportion="0.0">
@@ -692,58 +671,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/µ.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/Ω.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="0" selection-start="1994" selection-end="1994" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/ΩString.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="782" selection-end="782" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/€.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="17" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/£cstr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="23" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/£cstring.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="3" selection-start="609" selection-end="609" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/€String$CharSequence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="1" selection-start="1017" selection-end="1017" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_proto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="19" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
+        <state line="42" column="0" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -757,7 +687,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_vtable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="15" selection-start="125" selection-end="125" vertical-scroll-proportion="0.06943105">
+        <state line="16" column="0" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_ref.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_ptr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="29" selection-start="161" selection-end="161" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_edge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="17" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/edgeString$CharSequence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="6" selection-start="38" selection-end="38" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_ptrait.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="12" selection-start="243" selection-end="243" vertical-scroll-proportion="-7.923077">
           <folding />
         </state>
       </provider>

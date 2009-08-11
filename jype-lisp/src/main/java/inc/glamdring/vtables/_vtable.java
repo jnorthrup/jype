@@ -23,5 +23,5 @@ public interface _vtable<sType extends Enum<sType> & _vtable<? super sType>>
     EnumSet<_ptrait> getPrimaryTraits();
     int $as$extent$offset$int();
     int $as$extent$length$int();
-    Ω<?> $();
+    _ref<?> $();
 }

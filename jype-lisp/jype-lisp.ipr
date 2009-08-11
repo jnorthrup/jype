@@ -3,10 +3,6 @@
   <component name="AntConfiguration">
     <defaultAnt bundledAnt="true" />
   </component>
-  <component name="Archetypes.Configuration">
-    <option name="archetypesFileLocation" value="archetypes.xml" />
-    <option name="workingDirectory" value="" />
-  </component>
   <component name="BuildJarProjectSettings">
     <option name="BUILD_JARS_ON_MAKE" value="false" />
   </component>
@@ -23,6 +19,9 @@
     <option name="lastScr" value="" />
     <option name="scrTextFileName" value="" />
     <option name="historyRevisionsNumber" value="4" />
+  </component>
+  <component name="ClassPatternConfiguration">
+    <testPatterns />
   </component>
   <component name="CodeStyleProjectProfileManger">
     <option name="PROJECT_PROFILE" />
@@ -73,20 +72,12 @@
     <option name="MAXIMUM_HEAP_SIZE" value="128" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
-    <file url="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_edge.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_ptr.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_ptrait.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_ref.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/_vtable.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/edgeString$CharSequence.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/£cstr.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/£cstring.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/jype-lisp/src/main/java/inc/glamdring/vtables/ΩString.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/inc/glamdring/vtables/_proto.java" charset="UTF-8" />
   </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
-  <component name="IdProvider" IDEtalkID="E8C0945A0BE31F3E2831F5A7FA0D00E5" />
+  <component name="IdProvider" IDEtalkID="5E2F2E5C33BA5ECEC60C8AA4CF461D94" />
   <component name="InspectionProjectProfileManager">
     <option name="PROJECT_PROFILE" value="Project Default" />
     <option name="USE_PROJECT_LEVEL_SETTINGS" value="false" />
@@ -95,40 +86,39 @@
       <profile version="1.0" is_locked="false">
         <option name="myName" value="Project Default" />
         <option name="myLocal" value="false" />
-        <inspection_tool class="RedundantSuppression" level="WARNING" enabled="true" />
-        <inspection_tool class="RedundantThrowsDeclaration" level="WARNING" enabled="true" />
-        <inspection_tool class="UnusedLibrary" level="WARNING" enabled="true" />
-        <inspection_tool class="EqualsAndHashcode" level="WARNING" enabled="true" />
-        <inspection_tool class="SSBasedInspection" level="WARNING" enabled="true" />
-        <inspection_tool class="TestOnlyProblems" level="WARNING" enabled="true" />
-        <inspection_tool class="DuplicatePropertyInspection" level="WARNING" enabled="true">
-          <option name="CURRENT_FILE" value="true" />
-          <option name="MODULE_WITH_DEPENDENCIES" value="false" />
-          <option name="CHECK_DUPLICATE_VALUES" value="true" />
-          <option name="CHECK_DUPLICATE_KEYS" value="true" />
-          <option name="CHECK_DUPLICATE_KEYS_WITH_DIFFERENT_VALUES" value="true" />
-        </inspection_tool>
-        <inspection_tool class="DuplicateStringLiteralInspection" level="WARNING" enabled="true">
-          <option name="MIN_STRING_LENGTH" value="5" />
-          <option name="IGNORE_PROPERTY_KEYS" value="false" />
-        </inspection_tool>
-        <inspection_tool class="HardCodedStringLiteral" level="WARNING" enabled="true">
-          <option name="ignoreForAssertStatements" value="true" />
-          <option name="ignoreForExceptionConstructors" value="true" />
-          <option name="ignoreForSpecifiedExceptionConstructors" value="" />
-          <option name="ignoreForJUnitAsserts" value="true" />
-          <option name="ignoreForClassReferences" value="true" />
-          <option name="ignoreForPropertyKeyReferences" value="true" />
-          <option name="ignoreForNonAlpha" value="true" />
-          <option name="ignoreAssignedToConstants" value="false" />
-          <option name="ignoreToString" value="false" />
-          <option name="nonNlsCommentPattern" value="NON-NLS" />
-        </inspection_tool>
-        <inspection_tool class="LossyEncoding" level="WARNING" enabled="true" />
-        <inspection_tool class="UnusedProperty" level="WARNING" enabled="true" />
       </profile>
     </profiles>
     <list size="0" />
+  </component>
+  <component name="JUnitClassTemplateConfiguration">
+    <option name="DONT_SHOW_TEMPLATE_DIALOG_IF_ONLY_ONE_TEMPLATE" value="false" />
+    <option name="DONT_SHOW_METHODS_DIALOG_IF_ONLY_ONE_METHOD" value="false" />
+    <option name="LAST_TEMPLATE_NAME" />
+    <option name="TEST_TEMPLATES">
+      <value>
+        <list size="0" />
+      </value>
+    </option>
+  </component>
+  <component name="JUnitMethodTemplateConfiguration">
+    <option name="DONT_SHOW_TEMPLATE_DIALOG_IF_ONLY_ONE_TEMPLATE" value="false" />
+    <option name="DONT_SHOW_METHODS_DIALOG_IF_ONLY_ONE_METHOD" value="false" />
+    <option name="LAST_TEMPLATE_NAME" />
+    <option name="TEST_TEMPLATES">
+      <value>
+        <list size="0" />
+      </value>
+    </option>
+  </component>
+  <component name="JUnitTestConfiguration">
+    <option name="IS_AUTO_TEST_CLASS_RENAME_ENABLED" value="true" />
+    <option name="IS_AUTO_TEST_CLASS_MOVE_ENABLED" value="true" />
+    <option name="IS_AUTO_TEST_CLASS_REFACTORING_ENABLED" value="true" />
+    <option name="IS_AUTO_TEST_METHODS_RENAME_ENABLED" value="true" />
+    <option name="IS_UNTESTED_METHOD_ICON_ENABLED" value="true" />
+    <option name="IS_GET_METHOD_ICONS_ENABLED" value="true" />
+    <option name="IS_SET_METHOD_ICONS_ENABLED" value="true" />
+    <option name="IS_UNIT_TEST_ENABLED" value="true" />
   </component>
   <component name="JavacSettings">
     <option name="DEBUGGING_INFO" value="true" />
@@ -291,17 +281,15 @@
     </group>
   </component>
   <component name="ProjectDetails">
-    <option name="projectName" value="jype-parent" />
+    <option name="projectName" value="jype-lisp" />
   </component>
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/jype-lisp/jype-lisp.iml" filepath="$PROJECT_DIR$/jype-lisp/jype-lisp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jype-parent.iml" filepath="$PROJECT_DIR$/jype-parent.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jype-j2php/jype-php.iml" filepath="$PROJECT_DIR$/jype-j2php/jype-php.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jype-lisp.iml" filepath="$PROJECT_DIR$/jype-lisp.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6 (1)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
   <component name="ResourceManagerContainer">
@@ -318,9 +306,6 @@
     <option name="GENERATE_IIOP_STUBS" value="false" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
   </component>
-  <component name="SamePlugin.Configuration">
-    <option name="minimumSizeOfFragment" value="10" />
-  </component>
   <component name="StarteamConfiguration">
     <option name="SERVER" value="" />
     <option name="PORT" value="49201" />
@@ -334,6 +319,18 @@
   </component>
   <component name="SvnBranchConfigurationManager">
     <option name="myVersion" value="123" />
+  </component>
+  <component name="SvnConfiguration">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="UPDATE_RUN_STATUS" value="false" />
+    <option name="UPDATE_RECURSIVELY" value="true" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <configuration useDefault="true">$PROJECT_DIR$/../../../.subversion</configuration>
+    <myIsUseDefaultProxy>true</myIsUseDefaultProxy>
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
@@ -373,6 +370,10 @@
     </GetOptions>
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
+  <component name="XPathView.XPathProjectComponent">
+    <history />
+    <find-history />
+  </component>
   <UsedPathMacros>
     <macro name="MAVEN_REPOSITORY" />
   </UsedPathMacros>
