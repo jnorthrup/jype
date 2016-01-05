@@ -1,22 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>jype</groupId>
-  <artifactId>jype-parent</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>jype-parent</name><description>jype Terraformed... by jim@bframe... on i386 MacBookPro4,1 Darwin... for  lisp... </description>
-  <url>http://bframe</url><scm><tag>HEAD</tag></scm>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  <modules>
-    <module>jype-lisp</module>
-    <module>jype-php</module>
-  </modules>
-</project>
+<?xml version="1.0"?>
+<project>
+    <version>1.0-SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>jype</groupId>
+    <artifactId>jype-lisp</artifactId>
+    <name>jype-lisp</name>
+    <description>lisp of jype Terraformed... by jim@bframe... on i386 MacBookPro4,1 Darwin... for lisp...</description>
+ </project>
