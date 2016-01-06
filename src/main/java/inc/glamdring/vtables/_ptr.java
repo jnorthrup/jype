@@ -2,42 +2,46 @@ package inc.glamdring.vtables;
 
 import java.nio.ByteBuffer;
 
+import static bbcursive.std.bb;
+import static bbcursive.std.pos;
+
 /**
  * pointer class -- approximation of c++ '*'
  *
  * @author jim
  */
-public class _ptr implements _edge<ByteBuffer, Integer> {
-    private ByteBuffer l;
 
-
-    public ByteBuffer demote(_edge<ByteBuffer, Integer> e) {
-        if (this != e) bind(e.demote(e), e.promote(e));
-        return l$();
+public class _ptr extends _edge<ByteBuffer, Integer> {
+    @Override
+    protected Integer at() {
+        return r$();
     }
 
-    public Integer promote(_edge<ByteBuffer, Integer> e) {
-        if (this != e) 
-            bind(e.demote(e), e.promote(e));
-        return $r();
+    /**
+     * bb pos
+     *
+     * @param integer
+     * @return
+     */
+    @Override
+    protected Integer goTo(Integer integer) {
+        return bb(theCore(), pos(integer)).position();
     }
 
-    public _edge<ByteBuffer, Integer> bind(ByteBuffer byteBuffer, Integer r) {
-
-        l = (ByteBuffer) byteBuffer.duplicate().position(r);
-        return this;
+    @Override
+    protected Integer r$() {
+        return null;
     }
 
-    public ByteBuffer reify(_ptr ptr1) {
-        return ptr1.l$();
+    /**
+     * this should act like a clone operation ONLY on pointers, when you pass a pointer in.  everything else should coneivably perform some deserialization, but this class MUST do the nonsensical thing and provide a pointer to its pointer, which shall be self forevermore
+     *
+     * @param void$
+     * @return
+     */
+    @Override
+    public ByteBuffer apply(_ptr void$) {
+        return bind(core(void$), location(void$)).core();
 
-    }
-
-    public ByteBuffer l$() {
-        return l;
-    }
-
-    public Integer $r() {
-        return demote(this).position();
     }
 }
