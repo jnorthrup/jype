@@ -1,9 +1,33 @@
 <?xml version="1.0"?>
 <project>
-    <version>1.0-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
     <groupId>jype</groupId>
     <artifactId>jype-lisp</artifactId>
     <name>jype-lisp</name>
+    <version>1.0-SNAPSHOT</version>
     <description>lisp of jype Terraformed... by jim@bframe... on i386 MacBookPro4,1 Darwin... for lisp...</description>
- </project>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.9</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.0xCopy</groupId>
+            <artifactId>bbcursive</artifactId>
+            <version>-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+</project>
