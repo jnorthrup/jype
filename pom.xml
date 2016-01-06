@@ -2,9 +2,9 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>jype</groupId>
-    <artifactId>jype-lisp</artifactId>
-    <name>jype-lisp</name>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>com.github.jnorthrup</artifactId>
+    <name>jype</name>
+    <version>1.1-SNAPSHOT</version>
     <description>lisp of jype Terraformed... by jim@bframe... on i386 MacBookPro4,1 Darwin... for lisp...</description>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -19,11 +19,6 @@
 
     </repositories>
     <dependencies>
-        <dependency>
-            <groupId>com.thoughtworks.xstream</groupId>
-            <artifactId>xstream</artifactId>
-            <version>1.4.7</version>
-        </dependency>
         <dependency>
             <groupId>com.github.0xCopy</groupId>
             <artifactId>bbcursive</artifactId>

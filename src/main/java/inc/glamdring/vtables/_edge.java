@@ -1,5 +1,7 @@
 package inc.glamdring.vtables;
 
+import java.util.Objects;
+
 /**
  * context class.   midpoint between 2 casts.  this class is a pair, but we pretend its more. this should be refactored
  * to a pair class.
@@ -34,8 +36,8 @@ public abstract class _edge<coreType, addressType> {
             case 0:
                 return core;
             default:
-                _edge.this.core = notnullorself[0];
-                return _edge.this.core;
+                core = notnullorself[0];
+                return core;
         }
     }
 
@@ -55,8 +57,8 @@ public abstract class _edge<coreType, addressType> {
      * @return
      */
     protected final addressType at(addressType... notnullorself) {
-        addressType addressType = notnullorself[0];
-        return notnullorself.length != 0 && notnullorself[0] != this ? goTo(addressType) : r$();
+        addressType addressType1 = notnullorself[0];
+        return 0 != notnullorself.length && !Objects.equals(this, addressType1) ? goTo(addressType1) : r$();
     }
 
     protected abstract addressType r$();
