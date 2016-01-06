@@ -1,13 +1,11 @@
 package inc.glamdring.vtables;
 
-import java.util.function.Function;
-
 /**
- * edge class.   midpoint between 2 casts.  this class is a pair, but we pretend its more. this should be refactored
+ * context class.   midpoint between 2 casts.  this class is a pair, but we pretend its more. this should be refactored
  * to a pair class.
  * <p>
  * Function interface performs reification from the addressType against the core
- * type,edge, delta, coersion points, etc.
+ * type,context, delta, coersion points, etc.
  * <p>
  * <p>
  * left refers to "refreence" side, right refers to "pointer" side.
@@ -16,7 +14,7 @@ import java.util.function.Function;
  * Date: Sep 18, 2008
  * Time: 6:05:14 AM
  */
-public abstract class _edge<coreType, addressType> implements Function<_ptr, coreType> {
+public abstract class _edge<coreType, addressType> {
     /**
      * this is a core of memory accessed somehow by an addressType to get java Objects from this context of core that is probably bytes or chars
      */
@@ -31,13 +29,13 @@ public abstract class _edge<coreType, addressType> implements Function<_ptr, cor
      * @param notnullorself new core
      * @return the core being held now
      */
-    protected coreType theCore(coreType... notnullorself) {
+     private coreType theCore(coreType... notnullorself) {
         switch (notnullorself.length) {
             case 0:
                 return core;
             default:
-                this.core = notnullorself[0];
-                return this.core;
+                _edge.this.core = notnullorself[0];
+                return _edge.this.core;
         }
     }
 
@@ -47,7 +45,7 @@ public abstract class _edge<coreType, addressType> implements Function<_ptr, cor
      * @param e
      * @return
      */
-    public final coreType core(_edge<coreType, addressType>... e) {
+    public   coreType core(_edge<coreType, addressType>... e) {
         return e.length == 0 || this != e[0] ? bind(theCore(e[0].core()), e[0].location()).core() : core;
     }
 
@@ -70,7 +68,7 @@ public abstract class _edge<coreType, addressType> implements Function<_ptr, cor
      */
     public final addressType location(_edge<coreType, addressType>... e) {
         _edge<coreType, addressType> coreTypeaddressType_edge;
-        return 0 == e.length || (coreTypeaddressType_edge = this) != e[0] ? bind((e[0].core()), at(e[0].location())).location() : coreTypeaddressType_edge.location();
+        return 0 == e.length || (coreTypeaddressType_edge = _edge.this) != e[0] ? bind((e[0].core()), at(e[0].location())).location() : coreTypeaddressType_edge.location();
     }
 
     /**
@@ -84,17 +82,10 @@ public abstract class _edge<coreType, addressType> implements Function<_ptr, cor
             , addressType address) {
         theCore(coreType);
         at(address);
-        return this;
+        return _edge.this;
     }
 
-    /**
-     * deserialize/reify from
-     *
-     * @param void$
-     * @return object
-     */
 
-    public abstract coreType apply(_ptr void$);
 }
 /**
  * public interface €<Ω, µ> extends _proto<Ω> { Ω Ω(€<Ω, µ> €); µ µ(€<Ω, µ> €); €<Ω, µ> €(Ω Ω, µ µ);}

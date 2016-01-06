@@ -8,7 +8,7 @@
     <description>lisp of jype Terraformed... by jim@bframe... on i386 MacBookPro4,1 Darwin... for lisp...</description>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.9</maven.compiler.target>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <repositories>
